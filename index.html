@@ -441,6 +441,318 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Pl
 </div>
 
 <!-- YARADAN'DAN GELEN MESAJ KUTUSU -->
+<!-- BİNAURAL BEAT FREKANS MOTORU -->
+<div id="binaural-bar" style="
+  background:rgba(139,131,232,.06);
+  border-top:1px solid rgba(139,131,232,.25);
+  border-bottom:1px solid rgba(139,131,232,.2);
+  padding:.65rem 1rem;
+  transition: all .5s;
+">
+  <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;">
+    <div style="font-size:1rem;flex-shrink:0;">🎧</div>
+    <div style="flex:1;min-width:0;">
+      <div id="binaural-ad" style="font-size:.62rem;font-weight:500;color:var(--purple);letter-spacing:.06em;transition:color .5s;">Binaural Beat — akıllı frekans motoru</div>
+      <div id="binaural-aciklama" style="font-size:.5rem;color:var(--text3);margin-top:2px;letter-spacing:.05em;">▶ Başlat → 7 frekans · akıllı döngü · Kulaklık ile dinle</div>
+      <div style="display:flex;gap:.75rem;margin-top:3px;">
+        <div id="binaural-kategori" style="font-size:.48rem;color:var(--amber);letter-spacing:.04em;"></div>
+        <div id="binaural-kalan" style="font-size:.48rem;color:var(--teal);font-family:'IBM Plex Mono',monospace;font-weight:500;"></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:.5rem;align-items:center;flex-shrink:0;">
+      <div style="text-align:center;">
+        <div style="font-size:.42rem;color:var(--text3);letter-spacing:.08em;">SOL KULAK</div>
+        <div id="binaural-sol" style="font-size:.6rem;color:var(--purple);font-family:'IBM Plex Mono',monospace;font-weight:500;">— Hz</div>
+      </div>
+      <div style="font-size:.5rem;color:var(--text3);">·</div>
+      <div style="text-align:center;">
+        <div style="font-size:.42rem;color:var(--text3);letter-spacing:.08em;">SAĞ KULAK</div>
+        <div id="binaural-sag" style="font-size:.6rem;color:var(--amber);font-family:'IBM Plex Mono',monospace;font-weight:500;">— Hz</div>
+      </div>
+      <div style="font-size:.5rem;color:var(--text3);">·</div>
+      <div style="text-align:center;">
+        <div style="font-size:.42rem;color:var(--text3);letter-spacing:.08em;">BEAT</div>
+        <div id="binaural-beat" style="font-size:.6rem;color:var(--teal);font-family:'IBM Plex Mono',monospace;font-weight:500;">— Hz</div>
+      </div>
+    </div>
+    <div id="binaural-dalga" style="font-size:.9rem;flex-shrink:0;animation:none;">〰</div>
+    <button id="binaural-btn" onclick="binauralToggle()" style="
+      flex-shrink:0;background:rgba(139,131,232,.1);border:1px solid rgba(139,131,232,.4);
+      border-radius:8px;color:var(--purple);font-size:.58rem;font-family:'IBM Plex Mono',monospace;
+      letter-spacing:.08em;padding:.4rem .85rem;cursor:pointer;transition:all .3s;white-space:nowrap;">
+      ▶ Başlat
+    </button>
+  </div>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;">
+    <span style="font-size:.45rem;color:var(--text3);letter-spacing:.1em;flex-shrink:0;">BLOKAJ:</span>
+    <button onclick="binauralManuelSec('blokaj',0)" style="background:rgba(229,82,80,.12);border:1px solid rgba(229,82,80,.3);border-radius:5px;color:#f88;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">396 Hz</button>
+    <button onclick="binauralManuelSec('blokaj',1)" style="background:rgba(224,123,84,.12);border:1px solid rgba(224,123,84,.3);border-radius:5px;color:#f9b;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">417 Hz</button>
+    <button onclick="binauralManuelSec('blokaj',2)" style="background:rgba(201,123,212,.12);border:1px solid rgba(201,123,212,.3);border-radius:5px;color:#d9aff5;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">528 Hz</button>
+    <span style="font-size:.45rem;color:var(--text3);letter-spacing:.1em;margin-left:.3rem;flex-shrink:0;">LOAD:</span>
+    <button onclick="binauralManuelSec('load',0)" style="background:rgba(34,184,147,.12);border:1px solid rgba(34,184,147,.3);border-radius:5px;color:#9fe1cb;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">639 Hz</button>
+    <button onclick="binauralManuelSec('load',1)" style="background:rgba(74,159,224,.12);border:1px solid rgba(74,159,224,.3);border-radius:5px;color:#9ad4f7;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">741 Hz</button>
+    <button onclick="binauralManuelSec('load',2)" style="background:rgba(139,131,232,.12);border:1px solid rgba(139,131,232,.3);border-radius:5px;color:#cecbf6;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">852 Hz</button>
+    <button onclick="binauralManuelSec('load',3)" style="background:rgba(201,168,50,.12);border:1px solid rgba(201,168,50,.3);border-radius:5px;color:#fcd97a;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">963 Hz ✦</button>
+  </div>
+  <!-- Tinnitus modu -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.35rem;padding-top:.35rem;border-top:1px solid rgba(110,198,184,.15);">
+    <span style="font-size:.45rem;color:#6ec6b8;letter-spacing:.1em;flex-shrink:0;">🔕 TİNNİTUS:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">⚠ Uzman önerisi</span>
+    <button onclick="binauralManuelSec('tinnitus',0)" style="background:rgba(110,198,184,.1);border:1px solid rgba(110,198,184,.3);border-radius:5px;color:#6ec6b8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">396·4Hz</button>
+    <button onclick="binauralManuelSec('tinnitus',1)" style="background:rgba(122,184,212,.1);border:1px solid rgba(122,184,212,.3);border-radius:5px;color:#7ab8d4;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">432·7.83Hz</button>
+    <button onclick="binauralManuelSec('tinnitus',2)" style="background:rgba(139,196,168,.1);border:1px solid rgba(139,196,168,.3);border-radius:5px;color:#8bc4a8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">639·10Hz</button>
+    <button onclick="binauralManuelSec('tinnitus',3)" style="background:rgba(155,168,212,.1);border:1px solid rgba(155,168,212,.3);border-radius:5px;color:#9ba8d4;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">400·40Γ</button>
+  </div>
+  <!-- Rezonans -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(232,201,123,.15);">
+    <span style="font-size:.45rem;color:#e8c97b;letter-spacing:.1em;flex-shrink:0;">🔮 REZONANS:</span>
+    <button onclick="binauralManuelSec('rezonans',0)" style="background:rgba(232,201,123,.1);border:1px solid rgba(232,201,123,.3);border-radius:5px;color:#e8c97b;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">111 Hz Malta</button>
+    <button onclick="binauralManuelSec('rezonans',1)" style="background:rgba(212,160,112,.1);border:1px solid rgba(212,160,112,.3);border-radius:5px;color:#d4a070;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">174 Hz Ağrı</button>
+    <button onclick="binauralManuelSec('rezonans',2)" style="background:rgba(122,212,176,.1);border:1px solid rgba(122,212,176,.3);border-radius:5px;color:#7ad4b0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">285 Hz Doku</button>
+    <button onclick="binauralManuelSec('rezonans',3)" style="background:rgba(160,139,232,.1);border:1px solid rgba(160,139,232,.3);border-radius:5px;color:#a08be8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">852 Hz Sezgi</button>
+  </div>
+  <!-- İzokonik -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(232,123,155,.15);">
+    <span style="font-size:.45rem;color:#e87b9b;letter-spacing:.1em;flex-shrink:0;">⚡ İZOKONİK:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">Kulaklık şart değil</span>
+    <button onclick="binauralManuelSec('izokonik',0)" style="background:rgba(232,123,155,.1);border:1px solid rgba(232,123,155,.3);border-radius:5px;color:#e87b9b;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">4 Hz Theta</button>
+    <button onclick="binauralManuelSec('izokonik',1)" style="background:rgba(232,160,123,.1);border:1px solid rgba(232,160,123,.3);border-radius:5px;color:#e8a07b;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">8 Hz Θ/α</button>
+    <button onclick="binauralManuelSec('izokonik',2)" style="background:rgba(123,232,201,.1);border:1px solid rgba(123,232,201,.3);border-radius:5px;color:#7be8c9;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">10 Hz Alpha</button>
+    <button onclick="binauralManuelSec('izokonik',3)" style="background:rgba(123,176,232,.1);border:1px solid rgba(123,176,232,.3);border-radius:5px;color:#7bb0e8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">14 Hz SMR</button>
+  </div>
+  <!-- Kutsal Geometri -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(240,208,96,.15);">
+    <span style="font-size:.45rem;color:#f0d060;letter-spacing:.1em;flex-shrink:0;">✨ KUTSAL:</span>
+    <button onclick="binauralManuelSec('kutsal',0)" style="background:rgba(240,208,96,.1);border:1px solid rgba(240,208,96,.3);border-radius:5px;color:#f0d060;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">φ 1.618 Hz</button>
+    <button onclick="binauralManuelSec('kutsal',1)" style="background:rgba(208,160,240,.1);border:1px solid rgba(208,160,240,.3);border-radius:5px;color:#d0a0f0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">π 3.14 Hz</button>
+    <button onclick="binauralManuelSec('kutsal',2)" style="background:rgba(144,224,176,.1);border:1px solid rgba(144,224,176,.3);border-radius:5px;color:#90e0b0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">Fib 8 Hz</button>
+    <button onclick="binauralManuelSec('kutsal',3)" style="background:rgba(128,192,208,.1);border:1px solid rgba(128,192,208,.3);border-radius:5px;color:#80c0d0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">Fib 13 Hz</button>
+  </div>
+  <!-- Gezegen -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(240,192,48,.15);">
+    <span style="font-size:.45rem;color:#f0c030;letter-spacing:.1em;flex-shrink:0;">🌌 GEZEGEN:</span>
+    <button onclick="binauralManuelSec('gezegen',0)" style="background:rgba(240,192,48,.1);border:1px solid rgba(240,192,48,.3);border-radius:5px;color:#f0c030;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">☀ 126 Hz</button>
+    <button onclick="binauralManuelSec('gezegen',1)" style="background:rgba(192,208,240,.1);border:1px solid rgba(192,208,240,.3);border-radius:5px;color:#c0d0f0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🌙 210 Hz</button>
+    <button onclick="binauralManuelSec('gezegen',2)" style="background:rgba(96,192,128,.1);border:1px solid rgba(96,192,128,.3);border-radius:5px;color:#60c080;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🌍 194 Hz</button>
+    <button onclick="binauralManuelSec('gezegen',3)" style="background:rgba(208,160,80,.1);border:1px solid rgba(208,160,80,.3);border-radius:5px;color:#d0a050;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">♃ 183 Hz</button>
+    <button onclick="binauralManuelSec('gezegen',4)" style="background:rgba(240,144,176,.1);border:1px solid rgba(240,144,176,.3);border-radius:5px;color:#f090b0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">♀ 221 Hz</button>
+  </div>
+  <!-- Gematria Zenginlik -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(245,208,32,.2);">
+    <span style="font-size:.45rem;color:#f5d020;letter-spacing:.1em;flex-shrink:0;">✡ GEMATRİA:</span>
+    <button onclick="binauralManuelSec('gematria',0)" style="background:rgba(245,208,32,.1);border:1px solid rgba(245,208,32,.3);border-radius:5px;color:#f5d020;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">570 Hz עֹשֶׁר</button>
+    <button onclick="binauralManuelSec('gematria',1)" style="background:rgba(240,184,48,.1);border:1px solid rgba(240,184,48,.3);border-radius:5px;color:#f0b830;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">450 Hz שֶׁפַע</button>
+    <button onclick="binauralManuelSec('gematria',2)" style="background:rgba(232,200,112,.1);border:1px solid rgba(232,200,112,.3);border-radius:5px;color:#e8c870;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">227 Hz בְּרָכָה</button>
+    <button onclick="binauralManuelSec('gematria',3)" style="background:rgba(212,168,48,.1);border:1px solid rgba(212,168,48,.3);border-radius:5px;color:#d4a830;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">496 Hz מַלְכוּת</button>
+    <button onclick="binauralManuelSec('gematria',4)" style="background:rgba(200,184,32,.1);border:1px solid rgba(200,184,32,.3);border-radius:5px;color:#c8b820;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">148 Hz נֶצַח</button>
+    <button onclick="binauralManuelSec('gematria',5)" style="background:rgba(184,208,224,.1);border:1px solid rgba(184,208,224,.3);border-radius:5px;color:#b8d0e0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">160 Hz כֶּסֶף</button>
+  </div>
+  <!-- Zeka · Öngörü · İş Bitirici -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(96,208,255,.2);">
+    <span style="font-size:.45rem;color:#60d0ff;letter-spacing:.1em;flex-shrink:0;">🧠 ZEKA:</span>
+    <button onclick="binauralManuelSec('zeka',0)" style="background:rgba(96,208,255,.1);border:1px solid rgba(96,208,255,.3);border-radius:5px;color:#60d0ff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">474 Hz דַּעַת</button>
+    <button onclick="binauralManuelSec('zeka',1)" style="background:rgba(128,200,255,.1);border:1px solid rgba(128,200,255,.3);border-radius:5px;color:#80c8ff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">730 Hz חָכְמָה</button>
+    <button onclick="binauralManuelSec('zeka',2)" style="background:rgba(160,184,240,.1);border:1px solid rgba(160,184,240,.3);border-radius:5px;color:#a0b8f0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">670 Hz בִּינָה</button>
+    <button onclick="binauralManuelSec('zeka',3)" style="background:rgba(112,224,192,.1);border:1px solid rgba(112,224,192,.3);border-radius:5px;color:#70e0c0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">630 Hz זְרִיזוּת</button>
+    <button onclick="binauralManuelSec('zeka',4)" style="background:rgba(144,208,232,.1);border:1px solid rgba(144,208,232,.3);border-radius:5px;color:#90d0e8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">350 Hz שֵׂכֶל</button>
+    <button onclick="binauralManuelSec('zeka',5)" style="background:rgba(80,200,208,.1);border:1px solid rgba(80,200,208,.3);border-radius:5px;color:#50c8d0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">138 Hz הַצְלָחָה</button>
+    <button onclick="binauralManuelSec('zeka',6)" style="background:rgba(96,184,224,.1);border:1px solid rgba(96,184,224,.3);border-radius:5px;color:#60b8e0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">230 Hz עֵסֶק</button>
+    <button onclick="binauralManuelSec('zeka',7)" style="background:rgba(64,216,176,.1);border:1px solid rgba(64,216,176,.3);border-radius:5px;color:#40d8b0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">770 Hz מַזָּל</button>
+    <button onclick="binauralManuelSec('zeka',8)" style="background:rgba(160,232,255,.1);border:1px solid rgba(160,232,255,.3);border-radius:5px;color:#a0e8ff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">620 Hz כֶּתֶר Γ</button>
+  </div>
+  <!-- Şans · Çevre · Bağlantı -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(144,240,192,.2);">
+    <span style="font-size:.45rem;color:#90f0c0;letter-spacing:.1em;flex-shrink:0;">🍀 ŞANS:</span>
+    <button onclick="binauralManuelSec('sans',0)"  style="background:rgba(144,240,192,.1);border:1px solid rgba(144,240,192,.3);border-radius:5px;color:#90f0c0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">790 Hz סְבִיבָה</button>
+    <button onclick="binauralManuelSec('sans',1)"  style="background:rgba(112,232,160,.1);border:1px solid rgba(112,232,160,.3);border-radius:5px;color:#70e8a0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">600 Hz קֶשֶׁר</button>
+    <button onclick="binauralManuelSec('sans',2)"  style="background:rgba(96,216,144,.1);border:1px solid rgba(96,216,144,.3);border-radius:5px;color:#60d890;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">291 Hz אֶרֶץ</button>
+    <button onclick="binauralManuelSec('sans',3)"  style="background:rgba(80,200,128,.1);border:1px solid rgba(80,200,128,.3);border-radius:5px;color:#50c880;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">280 Hz עִיר</button>
+    <button onclick="binauralManuelSec('sans',4)"  style="background:rgba(128,240,176,.1);border:1px solid rgba(128,240,176,.3);border-radius:5px;color:#80f0b0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">512 Hz הַזְדַּמְנוּת</button>
+    <button onclick="binauralManuelSec('sans',5)"  style="background:rgba(160,240,192,.1);border:1px solid rgba(160,240,192,.3);border-radius:5px;color:#a0f0c0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">433 Hz מִשְׁפָּחָה</button>
+    <button onclick="binauralManuelSec('sans',6)"  style="background:rgba(112,216,168,.1);border:1px solid rgba(112,216,168,.3);border-radius:5px;color:#70d8a8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">260 Hz חֲבֵרִים</button>
+    <button onclick="binauralManuelSec('sans',7)"  style="background:rgba(96,200,152,.1);border:1px solid rgba(96,200,152,.3);border-radius:5px;color:#60c898;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">358 Hz קְרוֹבִים</button>
+    <button onclick="binauralManuelSec('sans',8)"  style="background:rgba(80,184,136,.1);border:1px solid rgba(80,184,136,.3);border-radius:5px;color:#50b888;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">409 Hz אֲבוֹת</button>
+    <button onclick="binauralManuelSec('sans',9)"  style="background:rgba(144,232,184,.1);border:1px solid rgba(144,232,184,.3);border-radius:5px;color:#90e8b8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">940 Hz יְלָדִים</button>
+    <button onclick="binauralManuelSec('sans',10)" style="background:rgba(176,240,208,.1);border:1px solid rgba(176,240,208,.3);border-radius:5px;color:#b0f0d0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">507 Hz אוֹשֶׁר</button>
+  </div>
+  <!-- Şanslı Ruh · Beden · Neşe · Haz -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(208,160,248,.2);">
+    <span style="font-size:.45rem;color:#d0a0f8;letter-spacing:.1em;flex-shrink:0;">✨ RUH·BEDEN·NEŞE:</span>
+    <button onclick="binauralManuelSec('nesehaz',0)"  style="background:rgba(208,160,248,.1);border:1px solid rgba(208,160,248,.3);border-radius:5px;color:#d0a0f8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">430 נֶפֶשׁ Ruh</button>
+    <button onclick="binauralManuelSec('nesehaz',1)"  style="background:rgba(240,160,192,.1);border:1px solid rgba(240,160,192,.3);border-radius:5px;color:#f0a0c0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">890 גּוּף Beden</button>
+    <button onclick="binauralManuelSec('nesehaz',2)"  style="background:rgba(240,176,160,.1);border:1px solid rgba(240,176,160,.3);border-radius:5px;color:#f0b0a0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">204 Güçlü Beden</button>
+    <button onclick="binauralManuelSec('nesehaz',3)"  style="background:rgba(224,192,240,.1);border:1px solid rgba(224,192,240,.3);border-radius:5px;color:#e0c0f0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">239 גּוֹרָל Kader</button>
+    <button onclick="binauralManuelSec('nesehaz',4)"  style="background:rgba(192,208,248,.1);border:1px solid rgba(192,208,248,.3);border-radius:5px;color:#c0d0f8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">329 Yaşam Döngüsü</button>
+    <button onclick="binauralManuelSec('nesehaz',5)"  style="background:rgba(160,240,208,.1);border:1px solid rgba(160,240,208,.3);border-radius:5px;color:#a0f0d0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">619 בְּרִיאוּת Sağlık</button>
+    <button onclick="binauralManuelSec('nesehaz',6)"  style="background:rgba(248,192,160,.1);border:1px solid rgba(248,192,160,.3);border-radius:5px;color:#f8c0a0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">405 תַּשׁוּקָה Arzu</button>
+    <button onclick="binauralManuelSec('nesehaz',7)"  style="background:rgba(248,224,160,.1);border:1px solid rgba(248,224,160,.3);border-radius:5px;color:#f8e0a0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">353 שִׂמְחָה Neşe</button>
+    <button onclick="binauralManuelSec('nesehaz',8)"  style="background:rgba(240,240,160,.1);border:1px solid rgba(240,240,160,.3);border-radius:5px;color:#f0f0a0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">369 עֹנֶג Haz</button>
+    <button onclick="binauralManuelSec('nesehaz',9)"  style="background:rgba(160,224,248,.1);border:1px solid rgba(160,224,248,.3);border-radius:5px;color:#a0e0f8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">292 רְפוּאָה Ruh Sağlığı</button>
+    <button onclick="binauralManuelSec('nesehaz',10)" style="background:rgba(176,248,224,.1);border:1px solid rgba(176,248,224,.3);border-radius:5px;color:#b0f8e0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">680 חַיִּים Yaşam</button>
+    <button onclick="binauralManuelSec('nesehaz',11)" style="background:rgba(248,208,176,.1);border:1px solid rgba(248,208,176,.3);border-radius:5px;color:#f8d0b0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">523 עֲלִיזוּת Neşeli Ortam</button>
+    <button onclick="binauralManuelSec('nesehaz',12)" style="background:rgba(240,192,224,.1);border:1px solid rgba(240,192,224,.3);border-radius:5px;color:#f0c0e0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">388 שַׂלְחָן Neşeli Aile·Dostlar</button>
+  </div>
+  <!-- Organ Rezonansları -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(255,107,138,.2);">
+    <span style="font-size:.45rem;color:#ff6b8a;letter-spacing:.1em;flex-shrink:0;">🫀 ORGAN:</span>
+    <button onclick="binauralManuelSec('organ',0)" style="background:rgba(255,107,138,.1);border:1px solid rgba(255,107,138,.3);border-radius:5px;color:#ff6b8a;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">696 Kalp</button>
+    <button onclick="binauralManuelSec('organ',1)" style="background:rgba(135,206,235,.1);border:1px solid rgba(135,206,235,.3);border-radius:5px;color:#87ceeb;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">660 Akciğer</button>
+    <button onclick="binauralManuelSec('organ',2)" style="background:rgba(144,238,144,.1);border:1px solid rgba(144,238,144,.3);border-radius:5px;color:#90ee90;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">317 Karaciğer</button>
+    <button onclick="binauralManuelSec('organ',3)" style="background:rgba(222,184,135,.1);border:1px solid rgba(222,184,135,.3);border-radius:5px;color:#deb887;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">281 Böbrek</button>
+    <button onclick="binauralManuelSec('organ',4)" style="background:rgba(255,160,122,.1);border:1px solid rgba(255,160,122,.3);border-radius:5px;color:#ffa07a;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">220 Mide</button>
+    <button onclick="binauralManuelSec('organ',5)" style="background:rgba(240,240,208,.1);border:1px solid rgba(240,240,208,.3);border-radius:5px;color:#d0d0a0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">304 Kemik</button>
+    <button onclick="binauralManuelSec('organ',6)" style="background:rgba(152,251,152,.1);border:1px solid rgba(152,251,152,.3);border-radius:5px;color:#98fb98;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">285 Lenf</button>
+    <button onclick="binauralManuelSec('organ',9)" style="background:rgba(127,255,212,.1);border:1px solid rgba(127,255,212,.3);border-radius:5px;color:#7fffd4;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">528 Bağışıklık</button>
+  </div>
+  <!-- Rife Frekansları -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(255,69,0,.2);">
+    <span style="font-size:.45rem;color:#ff6347;letter-spacing:.1em;flex-shrink:0;">⚡ RİFE:</span>
+    <button onclick="binauralManuelSec('rife',0)" style="background:rgba(255,69,0,.1);border:1px solid rgba(255,69,0,.3);border-radius:5px;color:#ff4500;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">787 Antiviral</button>
+    <button onclick="binauralManuelSec('rife',1)" style="background:rgba(255,99,71,.1);border:1px solid rgba(255,99,71,.3);border-radius:5px;color:#ff6347;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">880 Antibak.</button>
+    <button onclick="binauralManuelSec('rife',2)" style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.3);border-radius:5px;color:#ffa500;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">727 Antifungal</button>
+    <button onclick="binauralManuelSec('rife',5)" style="background:rgba(0,206,209,.1);border:1px solid rgba(0,206,209,.3);border-radius:5px;color:#00ced1;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">174 Ağrı Gider</button>
+    <button onclick="binauralManuelSec('rife',6)" style="background:rgba(64,224,208,.1);border:1px solid rgba(64,224,208,.3);border-radius:5px;color:#40e0d0;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">432 Bio Denge</button>
+  </div>
+  <!-- Çakra Sistemi -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(148,0,211,.2);">
+    <span style="font-size:.45rem;color:#9400d3;letter-spacing:.1em;flex-shrink:0;">🌈 ÇAKRA:</span>
+    <button onclick="binauralManuelSec('cakra',0)" style="background:rgba(255,0,0,.1);border:1px solid rgba(255,0,0,.3);border-radius:5px;color:#ff4444;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🔴 194 Kök</button>
+    <button onclick="binauralManuelSec('cakra',1)" style="background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.3);border-radius:5px;color:#ff8c00;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🟠 210 Sakral</button>
+    <button onclick="binauralManuelSec('cakra',2)" style="background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);border-radius:5px;color:#ffd700;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🟡 126 Solar</button>
+    <button onclick="binauralManuelSec('cakra',3)" style="background:rgba(0,192,0,.1);border:1px solid rgba(0,192,0,.3);border-radius:5px;color:#00c000;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">💚 136 Kalp</button>
+    <button onclick="binauralManuelSec('cakra',4)" style="background:rgba(0,191,255,.1);border:1px solid rgba(0,191,255,.3);border-radius:5px;color:#00bfff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🔵 141 Boğaz</button>
+    <button onclick="binauralManuelSec('cakra',5)" style="background:rgba(75,0,130,.1);border:1px solid rgba(75,0,130,.3);border-radius:5px;color:#8b4fc8;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">🟣 221 3.Göz</button>
+    <button onclick="binauralManuelSec('cakra',6)" style="background:rgba(148,0,211,.1);border:1px solid rgba(148,0,211,.3);border-radius:5px;color:#b44fda;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">💜 172 Taç</button>
+  </div>
+  <!-- Genetik · NF1 · NF2 · DNA -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(0,229,255,.2);">
+    <span style="font-size:.45rem;color:#00e5ff;letter-spacing:.1em;flex-shrink:0;">🧬 GENETİK:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">NF1·NF2·DNA</span>
+    <button onclick="binauralManuelSec('genetik',0)" style="background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);border-radius:5px;color:#00e5ff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">528 NF1 DNA</button>
+    <button onclick="binauralManuelSec('genetik',1)" style="background:rgba(0,207,255,.1);border:1px solid rgba(0,207,255,.3);border-radius:5px;color:#00cfff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">285 NF2 Doku</button>
+    <button onclick="binauralManuelSec('genetik',2)" style="background:rgba(255,107,157,.1);border:1px solid rgba(255,107,157,.3);border-radius:5px;color:#ff6b9d;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">396 Mutasyon</button>
+    <button onclick="binauralManuelSec('genetik',3)" style="background:rgba(255,159,67,.1);border:1px solid rgba(255,159,67,.3);border-radius:5px;color:#ff9f43;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">417 Epigenetik</button>
+    <button onclick="binauralManuelSec('genetik',4)" style="background:rgba(84,160,255,.1);border:1px solid rgba(84,160,255,.3);border-radius:5px;color:#54a0ff;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">174 Ağrı</button>
+    <button onclick="binauralManuelSec('genetik',5)" style="background:rgba(95,39,205,.1);border:1px solid rgba(95,39,205,.3);border-radius:5px;color:#a29bfe;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">40Γ Tümör</button>
+    <button onclick="binauralManuelSec('genetik',8)" style="background:rgba(238,90,36,.1);border:1px solid rgba(238,90,36,.3);border-radius:5px;color:#ee5a24;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">741 Baskılama</button>
+    <button onclick="binauralManuelSec('genetik',9)" style="background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:5px;color:#e17055;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">787 Hücre</button>
+    <button onclick="binauralManuelSec('genetik',10)" style="background:rgba(142,68,173,.1);border:1px solid rgba(142,68,173,.3);border-radius:5px;color:#a29bfe;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">352 Miyelin</button>
+    <button onclick="binauralManuelSec('genetik',13)" style="background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);border-radius:5px;color:#2ecc71;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">285 Fibrom</button>
+    <button onclick="binauralManuelSec('genetik',14)" style="background:rgba(249,202,36,.1);border:1px solid rgba(249,202,36,.3);border-radius:5px;color:#f9ca24;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">963 DNA Kalkan</button>
+    <button onclick="binauralManuelSec('genetik',15)" style="background:rgba(106,176,76,.1);border:1px solid rgba(106,176,76,.3);border-radius:5px;color:#6ab04c;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">432 Nesil</button>
+  </div>
+  <!-- Cesaret · Korku Yen -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(231,76,60,.25);">
+    <span style="font-size:.45rem;color:#e74c3c;letter-spacing:.1em;flex-shrink:0;">⚔ CESARET:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">Korku Yen</span>
+    <button onclick="binauralManuelSec('cesaret',0)"  style="background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);border-radius:5px;color:#e74c3c;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">396 Kök Korku</button>
+    <button onclick="binauralManuelSec('cesaret',1)"  style="background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:5px;color:#c0392b;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">174 Korku Ağrı</button>
+    <button onclick="binauralManuelSec('cesaret',2)"  style="background:rgba(230,126,34,.1);border:1px solid rgba(230,126,34,.3);border-radius:5px;color:#e67e22;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">417 Travma</button>
+    <button onclick="binauralManuelSec('cesaret',4)"  style="background:rgba(243,156,18,.1);border:1px solid rgba(243,156,18,.3);border-radius:5px;color:#f39c12;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">741 Gevurah</button>
+    <button onclick="binauralManuelSec('cesaret',5)"  style="background:rgba(241,196,15,.1);border:1px solid rgba(241,196,15,.3);border-radius:5px;color:#f1c40f;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">528 Kahraman</button>
+    <button onclick="binauralManuelSec('cesaret',7)"  style="background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);border-radius:5px;color:#2ecc71;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">432 Sakin Güç</button>
+    <button onclick="binauralManuelSec('cesaret',8)"  style="background:rgba(142,68,173,.1);border:1px solid rgba(142,68,173,.3);border-radius:5px;color:#a29bfe;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">40Γ Amigdala</button>
+    <button onclick="binauralManuelSec('cesaret',11)" style="background:rgba(22,160,133,.1);border:1px solid rgba(22,160,133,.3);border-radius:5px;color:#16a085;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">18β Eylem</button>
+    <button onclick="binauralManuelSec('cesaret',12)" style="background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:5px;color:#e74c3c;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">216 Gevurah✡</button>
+    <button onclick="binauralManuelSec('cesaret',14)" style="background:rgba(243,156,18,.1);border:1px solid rgba(243,156,18,.3);border-radius:5px;color:#f39c12;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">480 Tiferet✡</button>
+    <button onclick="binauralManuelSec('cesaret',17)" style="background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);border-radius:5px;color:#e74c3c;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">♂ 144 Mars</button>
+    <button onclick="binauralManuelSec('cesaret',19)" style="background:rgba(162,155,254,.1);border:1px solid rgba(162,155,254,.3);border-radius:5px;color:#a29bfe;font-size:.48rem;padding:.25rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;">963 İlahi Güç</button>
+  </div>
+  <!-- 6 Katman: Ego → Eylem -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(253,121,168,.25);">
+    <span style="font-size:.45rem;color:#fd79a8;letter-spacing:.08em;flex-shrink:0;">⚡ EGO→EYLEM:</span>
+    <button onclick="binauralManuelSec('cesaret',20)" style="background:rgba(253,121,168,.12);border:1px solid rgba(253,121,168,.35);border-radius:5px;color:#fd79a8;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🜂 EGO 432·7θ</button>
+    <button onclick="binauralManuelSec('cesaret',21)" style="background:rgba(225,112,85,.12);border:1px solid rgba(225,112,85,.35);border-radius:5px;color:#e17055;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🛡 KORKU 432·8α</button>
+    <button onclick="binauralManuelSec('cesaret',22)" style="background:rgba(116,185,255,.12);border:1px solid rgba(116,185,255,.35);border-radius:5px;color:#74b9ff;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🫂 TRAVMA 432·10α</button>
+    <button onclick="binauralManuelSec('cesaret',23)" style="background:rgba(253,203,110,.12);border:1px solid rgba(253,203,110,.35);border-radius:5px;color:#fdcb6e;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">⚔ CESARET 528·10α</button>
+    <button onclick="binauralManuelSec('cesaret',24)" style="background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.35);border-radius:5px;color:#00cec9;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">💠 ÇELİK 432·12SMR</button>
+    <button onclick="binauralManuelSec('cesaret',25)" style="background:rgba(85,239,196,.12);border:1px solid rgba(85,239,196,.35);border-radius:5px;color:#55efc4;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">⚡ EYLEM 432·14SMR</button>
+  </div>
+  <!-- Şans Akışı Protokolü -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(249,202,36,.25);">
+    <span style="font-size:.45rem;color:#f9ca24;letter-spacing:.08em;flex-shrink:0;">✦ ŞANS AKIŞI:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">חסד→מזל→הזדמנות→הצלחה→שפע→פרנסה→ברכה</span>
+  </div>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.25rem;">
+    <button onclick="binauralManuelSec('sansAkisi',0)" style="background:rgba(162,155,254,.12);border:1px solid rgba(162,155,254,.35);border-radius:5px;color:#a29bfe;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🤲 İHSAN 72·7θ</button>
+    <button onclick="binauralManuelSec('sansAkisi',1)" style="background:rgba(85,239,196,.12);border:1px solid rgba(85,239,196,.35);border-radius:5px;color:#55efc4;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🍀 MAZAL 77·10α</button>
+    <button onclick="binauralManuelSec('sansAkisi',2)" style="background:rgba(116,185,255,.12);border:1px solid rgba(116,185,255,.35);border-radius:5px;color:#74b9ff;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🚪 FIRSAT 512·12</button>
+    <button onclick="binauralManuelSec('sansAkisi',3)" style="background:rgba(253,203,110,.12);border:1px solid rgba(253,203,110,.35);border-radius:5px;color:#fdcb6e;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🏆 BAŞARI 414·14</button>
+    <button onclick="binauralManuelSec('sansAkisi',4)" style="background:rgba(0,206,201,.12);border:1px solid rgba(0,206,201,.35);border-radius:5px;color:#00cec9;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🌊 BOLLUK 450·8α</button>
+    <button onclick="binauralManuelSec('sansAkisi',5)" style="background:rgba(106,176,76,.12);border:1px solid rgba(106,176,76,.35);border-radius:5px;color:#6ab04c;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🌾 GEÇİM 395·10α</button>
+    <button onclick="binauralManuelSec('sansAkisi',6)" style="background:rgba(249,202,36,.12);border:1px solid rgba(249,202,36,.35);border-radius:5px;color:#f9ca24;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🌟 BEREKET 454·8α</button>
+  </div>
+  <!-- Şifa Protokolü -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(85,239,196,.2);">
+    <span style="font-size:.45rem;color:#55efc4;letter-spacing:.08em;flex-shrink:0;">🌿 ŞİFA:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">שלום→חיים→בריאות→מזל→חן→רפואה→ברכה</span>
+  </div>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.25rem;">
+    <button onclick="binauralManuelSec('sifaProtokol',0)" style="background:rgba(223,230,233,.1);border:1px solid rgba(223,230,233,.3);border-radius:5px;color:#dfe6e9;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">1.SAKİNLİK 432·8α</button>
+    <button onclick="binauralManuelSec('sifaProtokol',1)" style="background:rgba(162,155,254,.1);border:1px solid rgba(162,155,254,.3);border-radius:5px;color:#a29bfe;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">2.HAYAT 408·8α</button>
+    <button onclick="binauralManuelSec('sifaProtokol',2)" style="background:rgba(85,239,196,.1);border:1px solid rgba(85,239,196,.3);border-radius:5px;color:#55efc4;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">3.SAĞLIK 619·10α</button>
+    <button onclick="binauralManuelSec('sifaProtokol',3)" style="background:rgba(253,203,110,.1);border:1px solid rgba(253,203,110,.3);border-radius:5px;color:#fdcb6e;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">4.MAZAL 462·10α</button>
+    <button onclick="binauralManuelSec('sifaProtokol',4)" style="background:rgba(253,121,168,.1);border:1px solid rgba(253,121,168,.3);border-radius:5px;color:#fd79a8;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">5.LÜTUF 464·8α</button>
+    <button onclick="binauralManuelSec('sifaProtokol',5)" style="background:rgba(116,185,255,.1);border:1px solid rgba(116,185,255,.3);border-radius:5px;color:#74b9ff;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">6.ŞİFA 584·7θ</button>
+    <button onclick="binauralManuelSec('sifaProtokol',6)" style="background:rgba(249,202,36,.1);border:1px solid rgba(249,202,36,.3);border-radius:5px;color:#f9ca24;font-size:.48rem;padding:.3rem .6rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">7.BEREKET 454·8α</button>
+  </div>
+  <!-- Bilgelik Zinciri Protokolü -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(223,230,233,.2);">
+    <span style="font-size:.45rem;color:#dfe6e9;letter-spacing:.08em;flex-shrink:0;">🔮 BİLGELİK:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">אמת→דרך→חכמה→בינה→דעת→כונה→רצון→אמונה→סדר→הצלחה→ברכה</span>
+  </div>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.25rem;">
+    <button onclick="binauralManuelSec('bilgelik',0)"  style="background:rgba(223,230,233,.08);border:1px solid rgba(223,230,233,.25);border-radius:5px;color:#dfe6e9;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">1.GERÇEK 441·10α</button>
+    <button onclick="binauralManuelSec('bilgelik',1)"  style="background:rgba(162,155,254,.08);border:1px solid rgba(162,155,254,.25);border-radius:5px;color:#a29bfe;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">2.YOL 224·8α</button>
+    <button onclick="binauralManuelSec('bilgelik',2)"  style="background:rgba(253,203,110,.08);border:1px solid rgba(253,203,110,.25);border-radius:5px;color:#fdcb6e;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">3.BİLGELİK 146·7θ</button>
+    <button onclick="binauralManuelSec('bilgelik',3)"  style="background:rgba(116,185,255,.08);border:1px solid rgba(116,185,255,.25);border-radius:5px;color:#74b9ff;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">4.ANLAYIŞ 134·8α</button>
+    <button onclick="binauralManuelSec('bilgelik',4)"  style="background:rgba(85,239,196,.08);border:1px solid rgba(85,239,196,.25);border-radius:5px;color:#55efc4;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">5.BİLGİ 474·10α</button>
+    <button onclick="binauralManuelSec('bilgelik',5)"  style="background:rgba(253,121,168,.08);border:1px solid rgba(253,121,168,.25);border-radius:5px;color:#fd79a8;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">6.NİYET 162·7θ</button>
+    <button onclick="binauralManuelSec('bilgelik',6)"  style="background:rgba(225,112,85,.08);border:1px solid rgba(225,112,85,.25);border-radius:5px;color:#e17055;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">7.İRADE 346·12SMR</button>
+    <button onclick="binauralManuelSec('bilgelik',7)"  style="background:rgba(106,176,76,.08);border:1px solid rgba(106,176,76,.25);border-radius:5px;color:#6ab04c;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">8.İNANÇ 204·7θ</button>
+    <button onclick="binauralManuelSec('bilgelik',8)"  style="background:rgba(0,206,201,.08);border:1px solid rgba(0,206,201,.25);border-radius:5px;color:#00cec9;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">9.DÜZEN 264·12SMR</button>
+    <button onclick="binauralManuelSec('bilgelik',9)"  style="background:rgba(249,202,36,.08);border:1px solid rgba(249,202,36,.25);border-radius:5px;color:#f9ca24;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">10.BAŞARI 276·14SMR</button>
+    <button onclick="binauralManuelSec('bilgelik',10)" style="background:rgba(162,155,254,.08);border:1px solid rgba(162,155,254,.25);border-radius:5px;color:#a29bfe;font-size:.46rem;padding:.28rem .55rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">11.BEREKET 227·8α</button>
+  </div>
+  <!-- Doğru Yön / Karar Kalkanı -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(178,190,195,.2);">
+    <span style="font-size:.45rem;color:#b2bec3;letter-spacing:.08em;flex-shrink:0;">🧭 DOĞRU YÖN:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">עצור→אמת→כוונה→דין→חכמה→בינה→דעת→דרך→איזון→סבלנות→אמונה→שלום→אחד</span>
+  </div>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.25rem;">
+    <button onclick="binauralManuelSec('dogruYon',0)"  style="background:rgba(178,190,195,.1);border:1px solid rgba(178,190,195,.3);border-radius:5px;color:#b2bec3;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:600;">🛑 DUR 376·10α</button>
+    <button onclick="binauralManuelSec('dogruYon',1)"  style="background:rgba(223,230,233,.08);border:1px solid rgba(223,230,233,.25);border-radius:5px;color:#dfe6e9;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">GERÇEK 441·10α</button>
+    <button onclick="binauralManuelSec('dogruYon',2)"  style="background:rgba(253,121,168,.08);border:1px solid rgba(253,121,168,.25);border-radius:5px;color:#fd79a8;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">NİYET 324·8α</button>
+    <button onclick="binauralManuelSec('dogruYon',3)"  style="background:rgba(225,112,85,.08);border:1px solid rgba(225,112,85,.25);border-radius:5px;color:#e17055;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">ÖLÇÜ 256·10α</button>
+    <button onclick="binauralManuelSec('dogruYon',4)"  style="background:rgba(253,203,110,.08);border:1px solid rgba(253,203,110,.25);border-radius:5px;color:#fdcb6e;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">BİLGELİK 292·8α</button>
+    <button onclick="binauralManuelSec('dogruYon',5)"  style="background:rgba(116,185,255,.08);border:1px solid rgba(116,185,255,.25);border-radius:5px;color:#74b9ff;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">ANLAYIŞ 268·8α</button>
+    <button onclick="binauralManuelSec('dogruYon',6)"  style="background:rgba(85,239,196,.08);border:1px solid rgba(85,239,196,.25);border-radius:5px;color:#55efc4;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">BİLGİ 474·10α</button>
+    <button onclick="binauralManuelSec('dogruYon',7)"  style="background:rgba(162,155,254,.08);border:1px solid rgba(162,155,254,.25);border-radius:5px;color:#a29bfe;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">YOL 448·10α</button>
+    <button onclick="binauralManuelSec('dogruYon',8)"  style="background:rgba(0,206,201,.08);border:1px solid rgba(0,206,201,.25);border-radius:5px;color:#00cec9;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">DENGE 296·10α</button>
+    <button onclick="binauralManuelSec('dogruYon',9)"  style="background:rgba(106,176,76,.08);border:1px solid rgba(106,176,76,.25);border-radius:5px;color:#6ab04c;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">SABIR 568·8α</button>
+    <button onclick="binauralManuelSec('dogruYon',10)" style="background:rgba(129,236,236,.08);border:1px solid rgba(129,236,236,.25);border-radius:5px;color:#81ecec;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">İNANÇ 408·8α</button>
+    <button onclick="binauralManuelSec('dogruYon',11)" style="background:rgba(223,230,233,.08);border:1px solid rgba(223,230,233,.25);border-radius:5px;color:#dfe6e9;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">🕊 BÜTÜNLÜK 376·8α</button>
+    <button onclick="binauralManuelSec('dogruYon',12)" style="background:rgba(253,121,168,.08);border:1px solid rgba(253,121,168,.25);border-radius:5px;color:#fd79a8;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">✦ BİRLİK 416·7θ</button>
+  </div>
+  <!-- Dürtü Korunma Zinciri -->
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(231,76,60,.2);">
+    <span style="font-size:.45rem;color:#e74c3c;letter-spacing:.08em;flex-shrink:0;">🛡 DÜRTÜ:</span>
+    <span style="font-size:.42rem;color:var(--text3);flex-shrink:0;">עצור→אמת→בחירה→רצון→כח→גבול→סבלנות→חרות→חיים→אחד</span>
+  </div>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin-top:.25rem;">
+    <button onclick="binauralManuelSec('durtuKorunma',0)" style="background:rgba(178,190,195,.1);border:1px solid rgba(178,190,195,.3);border-radius:5px;color:#b2bec3;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:600;">🛑 DUR 376·10α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',1)" style="background:rgba(223,230,233,.08);border:1px solid rgba(223,230,233,.25);border-radius:5px;color:#dfe6e9;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">GERÇEK 441·10α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',2)" style="background:rgba(162,155,254,.08);border:1px solid rgba(162,155,254,.25);border-radius:5px;color:#a29bfe;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">SEÇİM 450·10α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',3)" style="background:rgba(253,203,110,.08);border:1px solid rgba(253,203,110,.25);border-radius:5px;color:#fdcb6e;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">İRADE 346·12α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',4)" style="background:rgba(225,112,85,.08);border:1px solid rgba(225,112,85,.25);border-radius:5px;color:#e17055;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">GÜÇ 448·12α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',5)" style="background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.25);border-radius:5px;color:#e74c3c;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">SINIR 328·12α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',6)" style="background:rgba(106,176,76,.08);border:1px solid rgba(106,176,76,.25);border-radius:5px;color:#6ab04c;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">SABIR 568·8α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',7)" style="background:rgba(0,206,201,.08);border:1px solid rgba(0,206,201,.25);border-radius:5px;color:#00cec9;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">ÖZGÜRLÜK 614·10α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',8)" style="background:rgba(85,239,196,.08);border:1px solid rgba(85,239,196,.25);border-radius:5px;color:#55efc4;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">HAYAT 544·10α</button>
+    <button onclick="binauralManuelSec('durtuKorunma',9)" style="background:rgba(253,121,168,.08);border:1px solid rgba(253,121,168,.25);border-radius:5px;color:#fd79a8;font-size:.45rem;padding:.28rem .5rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-weight:500;">✦ BİRLİK 416·7θ</button>
+  </div>
+</div>
+
 <div id="ilahi-mesaj-bar" style="
   background:linear-gradient(135deg,rgba(139,131,232,.1),rgba(201,128,32,.08),rgba(34,181,132,.06));
   border-top:1px solid rgba(139,131,232,.25);
@@ -3959,6 +4271,776 @@ function saatGuncelle(){
 }
 setInterval(saatGuncelle,1000);
 setInterval(gunPanel,60000);
+
+// ── BİNAURAL BEAT FREKANS MOTORU ────────────────────────────
+/*
+  Binaural Beat: Sol kulak (carrier) + Sağ kulak (carrier + beat)
+  Beyin farkı alır → hedef frekansa kilitlenir
+
+  BLOKAJ frekanslari — temizleme / çözme:
+    396 Hz beat 8 Hz  → korku · suçluluk · blokaj temizleme (Theta)
+    417 Hz beat 4 Hz  → değişim · negatif enerji silme (Delta)
+    528 Hz beat 6 Hz  → DNA onarımı · kök blokaj çözme (Theta)
+
+  LOAD frekanslari — yükleme / aktivasyon:
+    639 Hz beat 10 Hz → sevgi · bağ · ilişki yüklemesi (Alpha)
+    741 Hz beat 12 Hz → zihin açıklığı · ifade · güç (Alpha)
+    852 Hz beat 7 Hz  → ruhsal sezgi · ilahi bağ (Theta)
+    963 Hz beat 40 Hz → Yaradan bağlantısı · nur yüklemesi (Gamma)
+*/
+
+const FREKANSLAR = {
+  blokaj: [
+    { ad:'396 Hz — Huzur · Koruma · Blokaj',  carrier:396, beat:2,    renk:'#e55250', aciklama:'Delta 2 Hz — derin gevşeme · korku ve blokaj temizleme' },
+    { ad:'417 Hz — Değişim · Bereket · Silme', carrier:417, beat:5,    renk:'#e07b54', aciklama:'Theta 5 Hz — içe dönüş · negatif enerji ve atalet silme' },
+    { ad:'528 Hz — Şifa · DNA · Kök Çözme',   carrier:528, beat:7.83, renk:'#c97bd4', aciklama:'Schumann 7.83 Hz — DNA onarımı · kök blokaj' },
+  ],
+  load: [
+    { ad:'639 Hz — Sevgi · Aile · Bağ',         carrier:639, beat:9,    renk:'#22b893', aciklama:'Alpha 9 Hz — sevgi · aile · dostluk (292 madde)' },
+    { ad:'639 Hz — Şifa · Sağlık · Güzellik',   carrier:639, beat:10,   renk:'#4eb89c', aciklama:'Alpha 10 Hz — şifa · sağlık · güzellik (151 madde)' },
+    { ad:'432 Hz — Meditasyon · Şükür',         carrier:432, beat:7.83, renk:'#8b83e8', aciklama:'Schumann 7.83 Hz — şükür · dua · meditasyon (165 madde)' },
+    { ad:'528 Hz — Ruh · Tefekkür · İlahi',     carrier:528, beat:5,    renk:'#b07dd4', aciklama:'Theta 5 Hz — ruh · tefekkür · ilahi bağ (292 madde)' },
+    { ad:'741 Hz — Üretim · Emek · Disiplin',   carrier:741, beat:12,   renk:'#4a9fe0', aciklama:'SMR 12 Hz — üretim · emek (74 madde)' },
+    { ad:'741 Hz — Cesaret · Güç · Liderlik',   carrier:741, beat:18,   renk:'#3a8fd0', aciklama:'Beta 18 Hz — cesaret · güç (90 madde)' },
+    { ad:'963 Hz — Yaradan · Kabala · Gamma',   carrier:963, beat:40,   renk:'#c9a832', aciklama:'Gamma 40 Hz — Yaradan bağlantısı · Kabala (71 madde)' },
+    { ad:'396 Hz — Derin Gevşeme · Huzur',      carrier:396, beat:2,    renk:'#a0c4e0', aciklama:'Delta 2 Hz — derin gevşeme · huzur (75 madde)' },
+  ],
+  tinnitus: [
+    { ad:'396 Hz — Sinir Sistemi Sakinleştirme', carrier:396, beat:4,    renk:'#6ec6b8', aciklama:'Delta 4 Hz — çınlama algısı azalıyor', gain:0.07 },
+    { ad:'432 Hz — Schumann Dengeleme',          carrier:432, beat:7.83, renk:'#7ab8d4', aciklama:'Schumann 7.83 Hz — sinir sistemi dengesi', gain:0.07 },
+    { ad:'639 Hz — Alpha Rahatlama',             carrier:639, beat:10,   renk:'#8bc4a8', aciklama:'Alpha 10 Hz — stres kaynaklı çınlamayı rahatlatma', gain:0.06 },
+    { ad:'400 Hz — Gamma Tinnitus',             carrier:400, beat:40,   renk:'#9ba8d4', aciklama:'Gamma 40 Hz — tinnitus algısını azaltıyor', gain:0.05 },
+  ],
+  rezonans: [
+    { ad:'111 Hz — Malta Tapınak · Alfa Şifa',  carrier:111, beat:10,   renk:'#e8c97b', aciklama:'Alpha 10 Hz — Malta tapınak rezonansı · şifa · güvenlik' },
+    { ad:'174 Hz — Ağrı Giderme · Güvenlik',    carrier:174, beat:5,    renk:'#d4a070', aciklama:'Theta 5 Hz — ağrı giderme · stres azaltma · güvenlik' },
+    { ad:'285 Hz — Doku Onarımı · Enerji',      carrier:285, beat:7.83, renk:'#7ad4b0', aciklama:'Schumann 7.83 Hz — doku yenileme · enerji alanı onarımı' },
+    { ad:'852 Hz — Sezgi · İçsel Görüş',        carrier:852, beat:7,    renk:'#a08be8', aciklama:'Theta 7 Hz — sezgi · içsel görüş · uyanış' },
+  ],
+  izokonik: [
+    { ad:'İzokonik 4 Hz — Derin Theta',          carrier:200, beat:4,    renk:'#e87b9b', aciklama:'İzokonik — derin meditasyon · rüya bilinç hali', izokonik:true },
+    { ad:'İzokonik 8 Hz — Theta/Alpha',          carrier:200, beat:8,    renk:'#e8a07b', aciklama:'İzokonik — yaratıcılık · hafıza · sezgi', izokonik:true },
+    { ad:'İzokonik 10 Hz — Alpha Odak',          carrier:200, beat:10,   renk:'#7be8c9', aciklama:'İzokonik — odak · öğrenme · pozitif ruh hali', izokonik:true },
+    { ad:'İzokonik 14 Hz — SMR/Beta',            carrier:200, beat:14,   renk:'#7bb0e8', aciklama:'İzokonik — uyanık sakinlik · dikkat', izokonik:true },
+  ],
+  kutsal: [
+    { ad:'φ Altın Oran — 1.618 Hz Beat', carrier:432, beat:1.618, renk:'#f0d060', aciklama:'Phi 1.618 Hz — altın oran rezonansı · doğanın ritmi · uyum' },
+    { ad:'π Pi — 3.14 Hz Beat',          carrier:396, beat:3.14,  renk:'#d0a0f0', aciklama:'Pi 3.14 Hz — daire rezonansı · sonsuzluk · döngü bilinci' },
+    { ad:'Fibonacci — 8 Hz Beat',        carrier:528, beat:8,     renk:'#90e0b0', aciklama:'Fibonacci 8 Hz — doğanın dizisi · büyüme · spiral enerji' },
+    { ad:'Fibonacci — 13 Hz Beat',       carrier:528, beat:13,    renk:'#80c0d0', aciklama:'Fibonacci 13 Hz — üst spiral · zihin genişlemesi · yaratıcılık' },
+  ],
+  gezegen: [
+    { ad:'☀ Güneş — 126.22 Hz',  carrier:126.22, beat:10,   renk:'#f0c030', aciklama:'Alpha 10 Hz — Güneş rezonansı · canlılık · güç · yaşam enerjisi' },
+    { ad:'🌙 Ay — 210.42 Hz',    carrier:210.42, beat:7,    renk:'#c0d0f0', aciklama:'Theta 7 Hz — Ay rezonansı · sezgi · duygusal denge · ritim' },
+    { ad:'🌍 Dünya — 194.18 Hz', carrier:194.18, beat:7.83, renk:'#60c080', aciklama:'Schumann 7.83 Hz — Dünya rezonansı · denge · huzur · kök' },
+    { ad:'♃ Jüpiter — 183.58 Hz',carrier:183.58, beat:9,    renk:'#d0a050', aciklama:'Alpha 9 Hz — Jüpiter rezonansı · büyüme · bereket · bolluk' },
+    { ad:'♀ Venüs — 221.23 Hz',  carrier:221.23, beat:10,   renk:'#f090b0', aciklama:'Alpha 10 Hz — Venüs rezonansı · sevgi · güzellik · uyum' },
+  ],
+  gematria: [
+    { ad:'570 Hz — עֹשֶׁר Osher · Zenginlik',         carrier:570, beat:9,    renk:'#ffd700', aciklama:'Alpha 9 Hz — İbranice Zenginlik (ע70+ש300+ר200=570) · servet akışı' },
+    { ad:'450 Hz — שֶׁפַע Shefa · Bolluk Akışı',       carrier:450, beat:10,   renk:'#ffb700', aciklama:'Alpha 10 Hz — Bolluk ve Akış (ש300+פ80+ע70=450) · sonsuz bereket' },
+    { ad:'227 Hz — בְּרָכָה Beracha · Bereket',        carrier:227, beat:7.2,  renk:'#ffc857', aciklama:'Theta 7.2 Hz — İlahi Bereket (ב2+ר200+כ20+ה5=227) · lütuf yağmuru' },
+    { ad:'496 Hz — מַלְכוּת Malkhut · Dünyevi Nimet',  carrier:496, beat:5,    renk:'#e8a020', aciklama:'Theta 5 Hz — Malkhut Sefirot (496) · dünyevi nimet · maddi bolluk' },
+    { ad:'148 Hz — נֶצַח Netzach · Zafer · Servet',    carrier:148, beat:8,    renk:'#d4b840', aciklama:'Theta 8 Hz — Netzach Sefirot (148) · zafer · servet · arzu' },
+  ],
+  gematria: [
+    { ad:'570 Hz — עֹשֶׁר Osher · Zenginlik',         carrier:570, beat:9,    renk:'#f5d020', aciklama:'Alpha 9 Hz — Osher (עֹשֶׁר) · İbranice Zenginlik · Gematria 570' },
+    { ad:'450 Hz — שֶׁפַע Shefa · Bolluk Akışı',      carrier:450, beat:10,   renk:'#f0b830', aciklama:'Alpha 10 Hz — Shefa (שֶׁפַע) · Bolluk akışı · Gematria 450' },
+    { ad:'227 Hz — בְּרָכָה Beracha · Bereket',       carrier:227, beat:7.2,  renk:'#e8c870', aciklama:'Theta 7.2 Hz — Beracha (בְּרָכָה) · İlahi bereket · Gematria 227' },
+    { ad:'496 Hz — מַלְכוּת Malkhut · Dünyevi Nimet', carrier:496, beat:5,    renk:'#d4a830', aciklama:'Theta 5 Hz — Malkhut (מַלְכוּת) · Dünyevi nimet · Kabala · Gematria 496' },
+    { ad:'148 Hz — נֶצַח Netzach · Zafer · Servet',   carrier:148, beat:8,    renk:'#c8b820', aciklama:'Theta 8 Hz — Netzach (נֶצַח) · Zafer ve servet · Kabala · Gematria 148' },
+    { ad:'160 Hz — כֶּסֶף Kesef · Gümüş · Para',      carrier:160, beat:6.1,  renk:'#b8d0e0', aciklama:'Theta 6.1 Hz — Kesef (כֶּסֶף) · Gümüş · Para · Gematria 160' },
+  ],
+  zeka: [
+    { ad:'474 Hz — דַּעַת Da\'at · Fırsatı Görme',    carrier:474, beat:4.74, renk:'#60d0ff', aciklama:'Theta 4.74 Hz — Da\'at (דַּעַת) · İçsel biliş · Fırsatı görme · Gematria 474' },
+    { ad:'730 Hz — חָכְמָה Chokhmah · Öngörü',        carrier:730, beat:7.3,  renk:'#80c8ff', aciklama:'Theta 7.3 Hz — Chokhmah (חָכְמָה) · Bilgelik · Öngörü · Sezgi · Gematria 73' },
+    { ad:'670 Hz — בִּינָה Binah · Strateji',          carrier:670, beat:6.7,  renk:'#a0b8f0', aciklama:'Theta 6.7 Hz — Binah (בִּינָה) · Anlayış · Derin analiz · Strateji · Gematria 67' },
+    { ad:'630 Hz — זְרִיזוּת Zerizut · Çeviklik',     carrier:630, beat:6.3,  renk:'#70e0c0', aciklama:'Theta 6.3 Hz — Zerizut (זְרִיזוּת) · Çeviklik · Hızlı karar · Fırsat yakalama · Gematria 630' },
+    { ad:'350 Hz — שֵׂכֶל Sekhel · Zeka · Akıl',      carrier:350, beat:12,   renk:'#90d0e8', aciklama:'SMR 12 Hz — Sekhel (שֵׂכֶל) · Zeka · Akıl · Strateji · Gematria 350' },
+    { ad:'138 Hz — הַצְלָחָה Hatzlacha · Başarı',     carrier:138, beat:13.8, renk:'#50c8d0', aciklama:'SMR 13.8 Hz — Hatzlacha (הַצְלָחָה) · Başarı · İş bitirme · Gematria 138' },
+    { ad:'230 Hz — עֵסֶק Esek · İş · Ticaret',        carrier:230, beat:10,   renk:'#60b8e0', aciklama:'Alpha 10 Hz — Esek (עֵסֶק) · İş · Ticaret · Bitirmek · Gematria 230' },
+    { ad:'770 Hz — מַזָּל Mazal · Şans · Doğru An',   carrier:770, beat:7.7,  renk:'#40d8b0', aciklama:'Theta 7.7 Hz — Mazal (מַזָּל) · Şans · Fırsat · Doğru an · Gematria 77' },
+    { ad:'620 Hz — כֶּתֶר Keter · Üst Zeka · Gamma',  carrier:620, beat:40,   renk:'#a0e8ff', aciklama:'Gamma 40 Hz — Keter (כֶּתֶר) · Saf bilinç · Üst zeka · Gematria 620' },
+  ],
+  sans: [
+    { ad:'790 Hz — סְבִיבָה Sviva · Şanslı Çevre',       carrier:790, beat:7.9,  renk:'#90f0c0', aciklama:'Theta 7.9 Hz — Sviva (סְבִיבָה) · Şanslı çevre · ortam · Gematria 79' },
+    { ad:'600 Hz — קֶשֶׁר Kesher · Şanslı Bağlantılar',  carrier:600, beat:6,    renk:'#70e8a0', aciklama:'Theta 6 Hz — Kesher (קֶשֶׁר) · Şanslı bağlantılar · ağ · Gematria 600' },
+    { ad:'291 Hz — אֶרֶץ Eretz · Şanslı Ülke',           carrier:291, beat:9.1,  renk:'#60d890', aciklama:'Alpha 9.1 Hz — Eretz (אֶרֶץ) · Şanslı ülke · toprak · Gematria 291' },
+    { ad:'280 Hz — עִיר Ir · Şanslı Şehir',              carrier:280, beat:10,   renk:'#50c880', aciklama:'Alpha 10 Hz — Ir (עִיר) · Şanslı şehir · kent · Gematria 280' },
+    { ad:'512 Hz — הַזְדַּמְנוּת Hizdamnut · Fırsat',   carrier:512, beat:5.12, renk:'#80f0b0', aciklama:'Theta 5.12 Hz — Hizdamnut · Fırsat · olanak yükleme · Gematria 512' },
+    { ad:'433 Hz — מִשְׁפָּחָה Mishpacha · Şanslı Aile', carrier:433, beat:8,    renk:'#a0f0c0', aciklama:'Theta 8 Hz — Mishpacha (מִשְׁפָּחָה) · Şanslı aile · Gematria 433' },
+    { ad:'260 Hz — חֲבֵרִים Chaverim · Şanslı Dostlar',  carrier:260, beat:10,   renk:'#70d8a8', aciklama:'Alpha 10 Hz — Chaverim (חֲבֵרִים) · Şanslı dostlar · Gematria 260' },
+    { ad:'358 Hz — קְרוֹבִים Krovim · Şanslı Akrabalar', carrier:358, beat:7.58, renk:'#60c898', aciklama:'Theta 7.58 Hz — Krovim (קְרוֹבִים) · Şanslı akrabalar · Gematria 358' },
+    { ad:'409 Hz — אֲבוֹת Avot · Şanslı Atalar',         carrier:409, beat:4.09, renk:'#50b888', aciklama:'Delta 4.09 Hz — Avot (אֲבוֹת) · Şanslı atalar · Gematria 409' },
+    { ad:'940 Hz — יְלָדִים Yeladim · Şanslı Çocuklar',  carrier:940, beat:9.4,  renk:'#90e8b8', aciklama:'Alpha 9.4 Hz — Yeladim (יְלָדִים) · Şanslı çocuklar · Gematria 94' },
+    { ad:'507 Hz — אוֹשֶׁר Osher · Şanslı · Mutlu Hal', carrier:507, beat:5.07, renk:'#b0f0d0', aciklama:'Theta 5.07 Hz — Osher (אוֹשֶׁר) · Şanslı · mutlu hal · Gematria 507' },
+  ],
+  nesehaz: [
+    { ad:'430 Hz — נֶפֶשׁ Nefesh · Şanslı Ruh · Can',        carrier:430, beat:4.3,  renk:'#d0a0f8', aciklama:'Theta 4.3 Hz — Nefesh (נֶפֶשׁ) · Şanslı ruh · can · yaşam gücü · Gematria 430' },
+    { ad:'890 Hz — גּוּף Guf · Şanslı Beden',                carrier:890, beat:8.9,  renk:'#f0a0c0', aciklama:'Alpha 8.9 Hz — Guf (גּוּף) · Şanslı beden · fiziksel varlık · Gematria 89' },
+    { ad:'204 Hz — גּוּף חָזָק · Çok Güçlü Beden',           carrier:204, beat:10.4, renk:'#f0b0a0', aciklama:'Alpha 10.4 Hz — Guf Chazak · Çok güçlü beden · enerji · Gematria 204' },
+    { ad:'239 Hz — גּוֹרָל Goral · Şanslı Kader',             carrier:239, beat:9.39, renk:'#e0c0f0', aciklama:'Alpha 9.39 Hz — Goral (גּוֹרָל) · Şanslı kader · alın yazısı · Gematria 239' },
+    { ad:'329 Hz — מַחְזוֹר חַיִּים · Şanslı Yaşam Döngüsü', carrier:329, beat:3.29, renk:'#c0d0f8', aciklama:'Delta 3.29 Hz — Machzor Chaim · Şanslı yaşam döngüsü · Gematria 329' },
+    { ad:'619 Hz — בְּרִיאוּת Briut · Sağlıklı Beden',       carrier:619, beat:6.19, renk:'#a0f0d0', aciklama:'Theta 6.19 Hz — Briut (בְּרִיאוּת) · Sağlıklı beden · sıhhat · Gematria 619' },
+    { ad:'405 Hz — תַּשׁוּקָה Teshuka · Çok Güçlü Arzu',     carrier:405, beat:8.11, renk:'#f8c0a0', aciklama:'Theta 8.11 Hz — Teshuka (תַּשׁוּקָה) · Çok güçlü arzu · tutku · Gematria 405' },
+    { ad:'353 Hz — שִׂמְחָה Simcha · Çok Güçlü Neşe',        carrier:353, beat:5.3,  renk:'#f8e0a0', aciklama:'Theta 5.3 Hz — Simcha (שִׂמְחָה) · Çok güçlü neşe · sevinç · Gematria 353' },
+    { ad:'369 Hz — עֹנֶג Oneg · Çok Güçlü Haz',              carrier:369, beat:3.69, renk:'#f0f0a0', aciklama:'Delta 3.69 Hz — Oneg (עֹנֶג) · Çok güçlü haz · zevk · Gematria 369' },
+    { ad:'292 Hz — רְפוּאָה Refua · Güçlü Ruh Sağlığı',      carrier:292, beat:9.2,  renk:'#a0e0f8', aciklama:'Alpha 9.2 Hz — Refua (רְפוּאָה) · Güçlü ruh sağlığı · iyileşme · Gematria 292' },
+    { ad:'680 Hz — חַיִּים Chaim · Şanslı Yaşam · Canlılık', carrier:680, beat:6.8,  renk:'#b0f8e0', aciklama:'Theta 6.8 Hz — Chaim (חַיִּים) · Şanslı yaşam · canlılık · Gematria 68' },
+    { ad:'523 Hz — עֲלִיזוּת Alizut · Neşeli Ortam',          carrier:523, beat:5.23, renk:'#f8d0b0', aciklama:'Theta 5.23 Hz — Alizut (עֲלִיזוּת) · Neşeli ortam · şenlik · Gematria 523' },
+    { ad:'388 Hz — שַׂלְחָן Salkhan · Neşeli Dostlar · Aile', carrier:388, beat:7.76, renk:'#f0c0e0', aciklama:'Theta 7.76 Hz — Salkhan (שַׂלְחָן) · Neşeli dostlar · aile · komşular · Gematria 388' },
+  ],
+  organ: [
+    { ad:'696 Hz — Kalp Rezonansı',         carrier:696,    beat:7,    renk:'#ff6b8a', aciklama:'Theta 7 Hz — Kalp organı rezonansı · kardiyak ritim · kalp şifası' },
+    { ad:'660 Hz — Akciğer Rezonansı',      carrier:660,    beat:6,    renk:'#87ceeb', aciklama:'Theta 6 Hz — Akciğer rezonansı · nefes açma · bronş şifası' },
+    { ad:'317 Hz — Karaciğer Rezonansı',    carrier:317,    beat:5,    renk:'#90ee90', aciklama:'Theta 5 Hz — Karaciğer rezonansı · detoks · safra şifası' },
+    { ad:'281 Hz — Böbrek Rezonansı',       carrier:281,    beat:4,    renk:'#deb887', aciklama:'Delta 4 Hz — Böbrek rezonansı · filtre · böbrek şifası' },
+    { ad:'220 Hz — Mide Rezonansı',         carrier:220,    beat:8,    renk:'#ffa07a', aciklama:'Theta 8 Hz — Mide rezonansı · sindirim · mide şifası' },
+    { ad:'304 Hz — Kemik Rezonansı',        carrier:304,    beat:3,    renk:'#f0f0d0', aciklama:'Delta 3 Hz — Kemik rezonansı · iskelet · kemik güçlendirme' },
+    { ad:'285 Hz — Lenf · Bağışıklık',      carrier:285,    beat:5,    renk:'#98fb98', aciklama:'Theta 5 Hz — Lenf sistemi · bağışıklık · doku yenileme' },
+    { ad:'40 Hz — Beyin Gamma Aktivasyon',  carrier:200,    beat:40,   renk:'#da70d6', aciklama:'Gamma 40 Hz — Beyin aktivasyonu · nörodejenerasyon önleme · odak' },
+    { ad:'120 Hz — Kas Rezonansı',          carrier:240,    beat:12,   renk:'#ff8c69', aciklama:'SMR 12 Hz — Kas iyileşmesi · güçlendirme · toparlanma' },
+    { ad:'528 Hz — Bağışıklık Aktivasyon',  carrier:528,    beat:10,   renk:'#7fffd4', aciklama:'Alpha 10 Hz — Bağışıklık güçlendirme · DNA onarımı · hücre şifası' },
+  ],
+  rife: [
+    { ad:'787 Hz — Antiviral',              carrier:787,    beat:7,    renk:'#ff4500', aciklama:'Theta 7 Hz — Royal Rife antiviral · virüs temizleme' },
+    { ad:'880 Hz — Antibakteriyel',         carrier:880,    beat:8,    renk:'#ff6347', aciklama:'Theta 8 Hz — Royal Rife antibakteriyel · bakteri temizleme' },
+    { ad:'727 Hz — Antifungal',             carrier:727,    beat:7,    renk:'#ffa500', aciklama:'Theta 7 Hz — Royal Rife antifungal · mantar ve maya temizleme' },
+    { ad:'20 Hz — Bağ Dokusu Onarımı',     carrier:200,    beat:20,   renk:'#ffd700', aciklama:'Beta 20 Hz — Bağ dokusu onarımı · kıkırdak · tendon şifası' },
+    { ad:'660 Hz — Bağışıklık Aktivasyonu', carrier:660,    beat:10,   renk:'#adff2f', aciklama:'Alpha 10 Hz — Rife bağışıklık aktivasyonu · savunma güçlendirme' },
+    { ad:'174 Hz — Ağrı Giderme',           carrier:174,    beat:5,    renk:'#00ced1', aciklama:'Theta 5 Hz — Doğal ağrı giderme · anti-enflamasyon · anestezi etkisi' },
+    { ad:'432 Hz — Biyolojik Denge',        carrier:432,    beat:8,    renk:'#40e0d0', aciklama:'Theta 8 Hz — Genel biyolojik denge · hücresel uyum · homeostaz' },
+  ],
+  cakra: [
+    { ad:'194 Hz — Çakra 1 Kök',            carrier:194.18, beat:7.83, renk:'#ff0000', aciklama:'Schumann 7.83 Hz — Kök çakra · güvenlik · beden · toprak bağı' },
+    { ad:'210 Hz — Çakra 2 Sakral',         carrier:210.42, beat:7,    renk:'#ff8c00', aciklama:'Theta 7 Hz — Sakral çakra · duygular · yaratıcılık · akış' },
+    { ad:'126 Hz — Çakra 3 Solar Pleksus',  carrier:126.22, beat:10,   renk:'#ffd700', aciklama:'Alpha 10 Hz — Solar pleksus · güç · sindirim · özgüven' },
+    { ad:'136 Hz — Çakra 4 Kalp',           carrier:136.10, beat:9,    renk:'#00c000', aciklama:'Alpha 9 Hz — Kalp çakrası · koşulsuz sevgi · bağışıklık · şifa' },
+    { ad:'141 Hz — Çakra 5 Boğaz',          carrier:141.27, beat:8,    renk:'#00bfff', aciklama:'Theta 8 Hz — Boğaz çakrası · ifade · iletişim · hakikat' },
+    { ad:'221 Hz — Çakra 6 Üçüncü Göz',    carrier:221.23, beat:7,    renk:'#4b0082', aciklama:'Theta 7 Hz — Üçüncü göz · sezgi · görüş · içgüdü' },
+    { ad:'172 Hz — Çakra 7 Taç',            carrier:172.06, beat:40,   renk:'#9400d3', aciklama:'Gamma 40 Hz — Taç çakrası · üst bilinç · ilahi bağ · aydınlanma' },
+  ],
+  genetik: [
+    // NF1 · NF2 · Nörofibromatoz
+    { ad:'528 Hz — NF1 DNA Onarımı · Tümör Baskılama',    carrier:528, beat:5,    renk:'#00e5ff', aciklama:'Theta 5 Hz — NF1 geni (17q11.2) · nörofibromin protein · DNA onarımı · tümör baskılama' },
+    { ad:'285 Hz — NF2 Doku Onarımı · Merlin Protein',    carrier:285, beat:4,    renk:'#00cfff', aciklama:'Delta 4 Hz — NF2 geni (22q12) · merlin protein · schwannom · meninjiom baskılama' },
+    { ad:'396 Hz — Genetik Mutasyon Blokajı',             carrier:396, beat:6,    renk:'#ff6b9d', aciklama:'Theta 6 Hz — Genetik mutasyon blokajı · onkogen baskılama · hücre büyümesi kontrolü' },
+    { ad:'417 Hz — Epigenetik Değişim · DNA Temizleme',   carrier:417, beat:7.83, renk:'#ff9f43', aciklama:'Schumann 7.83 Hz — Epigenetik değişim · DNA metilasyonu düzenleme · gen ifadesi onarımı' },
+    // Genel Genetik Hastalık
+    { ad:'174 Hz — Hücre Zarı Onarımı · Ağrı Baskılama', carrier:174, beat:3,    renk:'#54a0ff', aciklama:'Delta 3 Hz — Hücre zarı onarımı · nöropati ağrı baskılama · sinir koruma' },
+    { ad:'40 Hz Gamma — Beyin Tümörü Baskılama',          carrier:200, beat:40,   renk:'#5f27cd', aciklama:'Gamma 40 Hz — Nöronal aktivasyon · akustik nörinom baskılama · beyin koruması' },
+    { ad:'432 Hz — Biyolojik Denge · Homeastaz',          carrier:432, beat:9,    renk:'#1dd1a1', aciklama:'Alpha 9 Hz — Biyolojik homeostaz · hücresel denge · genetik stabilite' },
+    { ad:'639 Hz — Hücre İletişimi · DNA Uyumu',          carrier:639, beat:10,   renk:'#10ac84', aciklama:'Alpha 10 Hz — Hücre iletişimi · DNA uyumu · kromozom stabilizasyonu' },
+    // Tümör Baskılama Frekanslari
+    { ad:'741 Hz — Tümör Baskılama · Detoks',             carrier:741, beat:12,   renk:'#ee5a24', aciklama:'SMR 12 Hz — Tümör baskılama geni aktivasyonu · hücre detoksu · anti-proliferasyon' },
+    { ad:'787 Hz — Anormal Hücre Büyümesi Baskılama',     carrier:787, beat:7,    renk:'#c0392b', aciklama:'Theta 7 Hz — Rife antitümör frekansı · anormal hücre büyümesi baskılama' },
+    // Sinir Sistemi Onarımı
+    { ad:'352 Hz — Sinir Kılıfı Onarımı · Miyelin',      carrier:352, beat:5,    renk:'#8e44ad', aciklama:'Theta 5 Hz — Miyelin kılıf onarımı · sinir iletimi iyileştirme · nöropati şifası' },
+    { ad:'304 Hz — Kemik · Periost Onarımı',              carrier:304, beat:3,    renk:'#d4e6f1', aciklama:'Delta 3 Hz — Kemik ve periost onarımı · iskelet sistemi · NF kaynaklı kemik lezyonu' },
+    // Bağışıklık · Anti-enflamasyon
+    { ad:'528 Hz — Bağışıklık · NF İnflamasyon',         carrier:528, beat:6,    renk:'#27ae60', aciklama:'Theta 6 Hz — NF kaynaklı kronik enflamasyon baskılama · bağışıklık güçlendirme' },
+    { ad:'285 Hz — Hücre Rejenerasyonu · Fibrom',         carrier:285, beat:7.83, renk:'#2ecc71', aciklama:'Schumann 7.83 Hz — Hücre rejenerasyonu · nörofibrom küçültme · doku yenileme' },
+    // Epigenetik · Genetik Koruma
+    { ad:'963 Hz — Epigenetik Koruma · İlahi DNA',        carrier:963, beat:40,   renk:'#f9ca24', aciklama:'Gamma 40 Hz — Epigenetik koruma · DNA üst katmanı · ilahi genetik kalkan' },
+    { ad:'432 Hz — Genetik Nesil Koruması',               carrier:432, beat:5,    renk:'#6ab04c', aciklama:'Theta 5 Hz — Genetik nesil koruması · kalıtsal hastalık zinciri kırılması' },
+  ],
+  cesaret: [
+    // Korku silme — Delta/Theta
+    { ad:'396 Hz — Kök Korku Çözme · Güvenlik',           carrier:396, beat:4,    renk:'#e74c3c', aciklama:'Delta 4 Hz — Kök korku çözme · güvenlik hissi · varoluş korkusu silme' },
+    { ad:'174 Hz — Korku Ağrısı Baskılama · Sinir',       carrier:174, beat:3,    renk:'#c0392b', aciklama:'Delta 3 Hz — Korku kaynaklı beden ağrısı · sinir sistemi sakinleştirme' },
+    { ad:'417 Hz — Travma Korkusu Çözme · Değişim',       carrier:417, beat:5,    renk:'#e67e22', aciklama:'Theta 5 Hz — Travma kökenli korku çözme · geçmiş korkusu silme · değişim cesareti' },
+    { ad:'285 Hz — Güvensizlik Çözme · Ortam Korkusu',    carrier:285, beat:4,    renk:'#d35400', aciklama:'Delta 4 Hz — Ortam ve çevre korkusu çözme · güvensizlik silme · koruyucu kalkan' },
+    // Cesaret aktivasyonu — Alpha/Beta
+    { ad:'741 Hz — Gevurah · Güç Cesareti · Karar',       carrier:741, beat:14,   renk:'#f39c12', aciklama:'Beta 14 Hz — Kabala Gevurah · güç ve cesaret · net karar verme · eylem cesareti' },
+    { ad:'528 Hz — Kahraman Cesareti · DNA Güç',          carrier:528, beat:10,   renk:'#f1c40f', aciklama:'Alpha 10 Hz — DNA düzeyinde cesaret aktivasyonu · kahraman frekansı · içsel güç' },
+    { ad:'639 Hz — Sosyal Cesaret · Bağ Cesareti',        carrier:639, beat:9,    renk:'#27ae60', aciklama:'Alpha 9 Hz — Sosyal korku çözme · ilişki cesareti · bağ kurma gücü' },
+    { ad:'432 Hz — Sakin Cesaret · Huzurlu Güç',          carrier:432, beat:10,   renk:'#2ecc71', aciklama:'Alpha 10 Hz — Paniklemeden cesaret · sakin kararlılık · iç huzurla güç' },
+    // Sinir sistemi güçlendirme
+    { ad:'40 Hz Gamma — Savaş ya da Kaç Baskılama',       carrier:200, beat:40,   renk:'#8e44ad', aciklama:'Gamma 40 Hz — Amigdala baskılama · savaş-kaç tepkisi düzenleme · cesur beyin' },
+    { ad:'10 Hz Alpha — Korku Döngüsü Kırma',             carrier:400, beat:10,   renk:'#9b59b6', aciklama:'Alpha 10 Hz — Tekrarlayan korku döngüsü kırma · cesaret refleksi kurma' },
+    { ad:'12 Hz SMR — Soğukkanlı Cesaret · Kontrol',      carrier:432, beat:12,   renk:'#1abc9c', aciklama:'SMR 12 Hz — Soğukkanlı cesaret · baskı altında kontrol · performans cesareti' },
+    { ad:'18 Hz Beta — Aktif Cesaret · Eylem',            carrier:741, beat:18,   renk:'#16a085', aciklama:'Beta 18 Hz — Aktif cesaret · harekete geçme · korku rağmen eylem' },
+    // Kabala Cesaret Rezonansları
+    { ad:'Gevurah 216 Hz — Güçlü Sınır · Adalet',        carrier:216, beat:9,    renk:'#c0392b', aciklama:'Alpha 9 Hz — Kabala Gevurah (גְּבוּרָה) · güçlü sınır · adalet cesareti · Gematria 216' },
+    { ad:'Netzach 296 Hz — Zafer Cesareti · Azim',        carrier:296, beat:8,    renk:'#e74c3c', aciklama:'Theta 8 Hz — Kabala Netzach (נֶצַח) · zafer iradesi · yılmaz cesaret · Gematria 148→296' },
+    { ad:'Tiferet 480 Hz — Denge Cesareti · Kalp Gücü',  carrier:480, beat:9,    renk:'#f39c12', aciklama:'Alpha 9 Hz — Kabala Tiferet (תִּפְאֶרֶת) · kalp cesareti · güzellik içinde güç' },
+    // Gezegensel Cesaret
+    { ad:'☀ Güneş 126 Hz — Kahraman Enerjisi',           carrier:126.22, beat:10, renk:'#f39c12', aciklama:'Alpha 10 Hz — Güneş rezonansı · kahraman enerjisi · cesaret ışını' },
+    { ad:'♃ Jüpiter 183 Hz — Büyüme Cesareti',           carrier:183.58, beat:9,  renk:'#d4ac0d', aciklama:'Alpha 9 Hz — Jüpiter rezonansı · büyüme cesareti · genişleme gücü' },
+    { ad:'♂ Mars 144 Hz — Savaşçı Cesareti',             carrier:144.72, beat:14, renk:'#e74c3c', aciklama:'Beta 14 Hz — Mars rezonansı · savaşçı ruhu · cesaret aktivasyonu · güç' },
+    // Kutsal Geometri Cesaret
+    { ad:'φ Altın Oran 432 Hz — Doğal Cesaret',          carrier:432, beat:1.618, renk:'#f0d060', aciklama:'Phi 1.618 Hz — Altın oran cesaret rezonansı · doğanın cesur ritmi · uyumlu güç' },
+    // Kapanış — Tam Cesaret
+    { ad:'963 Hz — İlahi Cesaret · Yaradan Gücü',        carrier:963, beat:40,   renk:'#a29bfe', aciklama:'Gamma 40 Hz — İlahi cesaret · Yaradan ile güç · korku değil nur · tam özgürlük' },
+    // ── 6 KATMAN — EGO'DAN EYLEME ─────────────────────────────
+    { ad:'🜂 EGO — אחד 13 Gem · Ben\'den Biz\'e',         carrier:432, beat:7,    renk:'#fd79a8', aciklama:'Theta 7 Hz — Ego çözme · אחד (Echad=13) · birlik bilinci · ben\'den biz\'e geçiş · 432 Hz uyum' },
+    { ad:'🛡 KORKU — Sakin Güç · 8 Hz α',                 carrier:432, beat:8,    renk:'#e17055', aciklama:'Alpha 8 Hz — Korku yenme · sakin güç · beden sakinleşir · zihin berraklaşır · 432 Hz denge' },
+    { ad:'🫂 TRAVMA — Güvenli Alan · 10 Hz α',            carrier:432, beat:10,   renk:'#74b9ff', aciklama:'Alpha 10 Hz — Travma çözme · güvenli alan yaratma · sinir sistemi sıfırlama · 432 Hz şifa' },
+    { ad:'⚔ CESARET — Kararlı Güç · 528 Hz · 10 Hz α',   carrier:528, beat:10,   renk:'#fdcb6e', aciklama:'Alpha 10 Hz — Kararlı güç · cesaret aktivasyonu · 528 Hz kahraman frekansı · eylem hazırlığı' },
+    { ad:'💠 ÇELİK SİNİR — Sarsılmaz Denge · 12 Hz SMR', carrier:432, beat:12,   renk:'#00cec9', aciklama:'SMR 12 Hz — Çelik sinir sistemi · sarsılmaz denge · baskı altında soğukkanlılık · 432 Hz kök' },
+    { ad:'⚡ EYLEM — Harekete Geç · 14 Hz SMR',           carrier:432, beat:14,   renk:'#55efc4', aciklama:'SMR 14 Hz — Harekete geç · aktif eylem · düşünmeden uygula · 432 Hz momentum · korku değil adım' },
+  ],
+  sansAkisi: [
+    // חסד → מזל → הזדמנות → הצלחה → שפע → פרנסה → ברכה
+    { ad:'🤲 İHSAN — חסד · GEM 72 · Vermek İçin Güç',
+      carrier:432, beat:7, renk:'#a29bfe',
+      aciklama:'Theta 7 Hz — חסד Chesed (GEM 72) · carrier 432 Hz · niyet: almak için değil verebilmek için güç istemek · ihsan kapısı' },
+    { ad:'🍀 MAZAL — מזל · GEM 77 · Fırsatı Fark Et',
+      carrier:432, beat:10, renk:'#55efc4',
+      aciklama:'Alpha 10 Hz — מזל Mazal (GEM 77) · carrier 432 Hz · niyet: fırsatları sakin ve açık zihinle fark etmek · şans frekansı' },
+    { ad:'🚪 FIRSAT — הזדמנות · GEM 512 · Fırsatı Yakala',
+      carrier:512, beat:12, renk:'#74b9ff',
+      aciklama:'SMR 12 Hz — הזדמנות Hizdamnut (GEM 512) · carrier 512 Hz · niyet: fırsatı fark etme ve değerlendirme · kapı açılıyor' },
+    { ad:'🏆 BAŞARI — הצלחה · GEM 138 · Carrier 414 Hz',
+      carrier:414, beat:14, renk:'#fdcb6e',
+      aciklama:'SMR 14 Hz — הצלחה Hatzlacha (GEM 138 × 3 = 414 Hz) · carrier 414 Hz · niyet: başarıya odaklanma · tamamlama gücü' },
+    { ad:'🌊 BOLLUK — שפע · GEM 450 · Akış Hali',
+      carrier:450, beat:8, renk:'#00cec9',
+      aciklama:'Alpha 8 Hz — שפע Shefa (GEM 450) · carrier 450 Hz = gematria değeri · niyet: sonsuz bolluk akışı · engelsiz bereket' },
+    { ad:'🌾 GEÇİM — פרנסה · GEM 395 · Parnasa',
+      carrier:395, beat:10, renk:'#6ab04c',
+      aciklama:'Alpha 10 Hz — פרנסה Parnasa (GEM 395) · carrier 395 Hz · niyet: aileni geçindirme · helal rızk · çocuklarına bereket' },
+    { ad:'🌟 BEREKET — ברכה · GEM 227 · Carrier 454 Hz',
+      carrier:454, beat:8, renk:'#f9ca24',
+      aciklama:'Alpha 8 Hz — ברכה Beracha (GEM 227 × 2 = 454 Hz) · carrier 454 Hz · niyet: ilahi bereketin kapıları ardına kadar açılsın' },
+  ],
+  sifaProtokol: [
+    { ad:'1. SAKİNLİK — שלום Şalom · GEM 376 · 432 Hz',
+      carrier:432, beat:8, renk:'#dfe6e9',
+      aciklama:'Alpha 8 Hz — שלום Şalom (GEM 376) · carrier 432 Hz · niyet: bedensel alarmı yumuşatma · iç barış · sinir sistemi sakinliği' },
+    { ad:'2. HAYAT — חיים Hayim · GEM 68 · 408 Hz',
+      carrier:408, beat:8, renk:'#a29bfe',
+      aciklama:'Alpha 8 Hz — חיים Hayim (GEM 68 × 6 = 408 Hz) · carrier 408 Hz · niyet: yaşamı destekleyen alışkanlıklara yönelme · yaşam sevinci' },
+    { ad:'3. SAĞLIK — בריאות Briut · GEM 619 · 619 Hz',
+      carrier:619, beat:10, renk:'#55efc4',
+      aciklama:'Alpha 10 Hz — בריאות Briut (GEM 619) · carrier 619 Hz · niyet: beden farkındalığı · sağlıklı olmak için içsel yönelim' },
+    { ad:'4. MAZAL — מזל Mazal · GEM 77 · 462 Hz',
+      carrier:462, beat:10, renk:'#fdcb6e',
+      aciklama:'Alpha 10 Hz — מזל Mazal (GEM 77 × 6 = 462 Hz) · carrier 462 Hz · niyet: yararlı fırsatları fark etme · açık zihin' },
+    { ad:'5. LÜTUF — חן Hen · GEM 58 · 464 Hz',
+      carrier:464, beat:8, renk:'#fd79a8',
+      aciklama:'Alpha 8 Hz — חן Hen (GEM 58 × 8 = 464 Hz) · carrier 464 Hz · niyet: yardımı kabul etme · yumuşaklık · olumlu sosyal temas' },
+    { ad:'6. ŞİFA NİYETİ — רפואה Refuah · GEM 292 · 584 Hz',
+      carrier:584, beat:7, renk:'#74b9ff',
+      aciklama:'Theta 7 Hz — רפואה Refuah (GEM 292 × 2 = 584 Hz) · carrier 584 Hz · niyet: iyileşme sürecine içsel yönelim · ruh ve beden şifası' },
+    { ad:'7. BEREKET — ברכה Beraha · GEM 227 · 454 Hz',
+      carrier:454, beat:8, renk:'#f9ca24',
+      aciklama:'Alpha 8 Hz — ברכה Beraha (GEM 227 × 2 = 454 Hz) · carrier 454 Hz · niyet: sahip olunan iyiliği fark etme · şükran · bereket bilinci' },
+  ],
+  bilgelik: [
+    { ad:'1. GERÇEK — אמת Emet · GEM 441',
+      carrier:441, beat:10, renk:'#dfe6e9',
+      aciklama:'Alpha 10 Hz — אמת Emet (GEM 441 × 1) · niyet: kendini kandırmadan gerçeği görmek · açık zihin' },
+    { ad:'2. YOL — דרך Derekh · GEM 224',
+      carrier:224, beat:8,  renk:'#a29bfe',
+      aciklama:'Alpha 8 Hz — דרך Derekh (GEM 224 × 1) · niyet: doğru yönü aramak · sakin yön bulma' },
+    { ad:'3. BİLGELİK — חכמה Hochma · GEM 73 · 146 Hz',
+      carrier:146, beat:7,  renk:'#fdcb6e',
+      aciklama:'Theta 7 Hz — חכמה Hochma (GEM 73 × 2 = 146 Hz) · niyet: üst bakış · derin sezgi · bilgelik' },
+    { ad:'4. ANLAYIŞ — בינה Bina · GEM 67 · 134 Hz',
+      carrier:134, beat:8,  renk:'#74b9ff',
+      aciklama:'Alpha 8 Hz — בינה Bina (GEM 67 × 2 = 134 Hz) · niyet: gördüğünü anlamlandırmak · entegrasyon' },
+    { ad:'5. BİLGİ — דעת Daat · GEM 474',
+      carrier:474, beat:10, renk:'#55efc4',
+      aciklama:'Alpha 10 Hz — דעת Daat (GEM 474 × 1) · niyet: bilgiyi içselleştirmek · hafıza · kavrayış' },
+    { ad:'6. NİYET — כונה Kavana · GEM 81 · 162 Hz',
+      carrier:162, beat:7,  renk:'#fd79a8',
+      aciklama:'Theta 7 Hz — כונה Kavana (GEM 81 × 2 = 162 Hz) · niyet: amacı berraklaştırmak · odak · niyet temizliği' },
+    { ad:'7. İRADE — רצון Ratzon · GEM 346',
+      carrier:346, beat:12, renk:'#e17055',
+      aciklama:'SMR 12 Hz — רצון Ratzon (GEM 346 × 1) · niyet: isteme gücü · irade aktivasyonu · kararlılık' },
+    { ad:'8. İNANÇ — אמונה Emuna · GEM 102 · 204 Hz',
+      carrier:204, beat:7,  renk:'#6ab04c',
+      aciklama:'Theta 7 Hz — אמונה Emuna (GEM 102 × 2 = 204 Hz) · niyet: yol karanlıkken devam etmek · güven' },
+    { ad:'9. DÜZEN — סדר Seder · GEM 264',
+      carrier:264, beat:12, renk:'#00cec9',
+      aciklama:'SMR 12 Hz — סדר Seder (GEM 264 × 1) · niyet: sisteme bağlı kalmak · düzen · disiplin' },
+    { ad:'10. BAŞARI — הצלחה Hatzlacha · GEM 138 · 276 Hz',
+      carrier:276, beat:14, renk:'#f9ca24',
+      aciklama:'SMR 14 Hz — הצלחה Hatzlacha (GEM 138 × 2 = 276 Hz) · niyet: sonuç üretmek · tamamlama · başarı' },
+    { ad:'11. BEREKET — ברכה Beraha · GEM 227',
+      carrier:227, beat:8,  renk:'#a29bfe',
+      aciklama:'Alpha 8 Hz — ברכה Beraha (GEM 227 × 1) · niyet: sonucu doğru kullanmak · bereket farkındalığı · şükran' },
+  ],
+  dogruYon: [
+    // עצור DUR → שלום BÜTÜNLÜK — 13 adım karar kalkanı
+    { ad:'1. DUR — עצור Atzor · GEM 376 · ZİHİNSEL FREN',
+      carrier:376, beat:10, renk:'#b2bec3',
+      aciklama:'Alpha 10 Hz — עצור Atzor (GEM 376 = שלום Şalom ile aynı) · carrier 376 Hz · niyet: zihinsel frene geç · dur · soluğunu al · aceleyi bırak' },
+    { ad:'2. GERÇEK — אמת Emet · GEM 441 · DURUMU GÖZLE',
+      carrier:441, beat:10, renk:'#dfe6e9',
+      aciklama:'Alpha 10 Hz — אמת Emet (GEM 441 × 1) · carrier 441 Hz · niyet: gerçeği olduğu gibi gör · durumu savunmadan gözlemle' },
+    { ad:'3. NİYET — כוונה Kavana · GEM 81 · 324 Hz',
+      carrier:324, beat:8,  renk:'#fd79a8',
+      aciklama:'Alpha 8 Hz — כוונה Kavana (GEM 81 × 4 = 324 Hz) · carrier 324 Hz · niyet: "Bunu neden yapıyorum?" · kararın kaynağını sor' },
+    { ad:'4. ÖLÇÜ — דין Din · GEM 64 · 256 Hz',
+      carrier:256, beat:10, renk:'#e17055',
+      aciklama:'Alpha 10 Hz — דין Din (GEM 64 × 4 = 256 Hz) · carrier 256 Hz · niyet: ölç ve sınır koy · risk kontrolü · yargı netliği' },
+    { ad:'5. BİLGELİK — חכמה Hochma · GEM 73 · 292 Hz',
+      carrier:292, beat:8,  renk:'#fdcb6e',
+      aciklama:'Alpha 8 Hz — חכמה Hochma (GEM 73 × 4 = 292 Hz) · carrier 292 Hz · niyet: daha geniş bak · perspektif genişlet · üst bakış' },
+    { ad:'6. ANLAYIŞ — בינה Bina · GEM 67 · 268 Hz',
+      carrier:268, beat:8,  renk:'#74b9ff',
+      aciklama:'Alpha 8 Hz — בינה Bina (GEM 67 × 4 = 268 Hz) · carrier 268 Hz · niyet: gördüğünü ayırt et · doğru-yanlış ayrıştırması' },
+    { ad:'7. BİLGİ — דעת Daat · GEM 474 · VERİDEN KARARA',
+      carrier:474, beat:10, renk:'#55efc4',
+      aciklama:'Alpha 10 Hz — דעת Daat (GEM 474 × 1) · carrier 474 Hz · niyet: bilgiyi bilinçli karara bağla · analiz tamamla' },
+    { ad:'8. YOL — דרך Derekh · GEM 224 · 448 Hz',
+      carrier:448, beat:10, renk:'#a29bfe',
+      aciklama:'Alpha 10 Hz — דרך Derekh (GEM 224 × 2 = 448 Hz) · carrier 448 Hz · niyet: yönünü kontrol et · doğru yolda mısın?' },
+    { ad:'9. DENGE — איזון Izun · GEM 74 · 296 Hz',
+      carrier:296, beat:10, renk:'#00cec9',
+      aciklama:'Alpha 10 Hz — איזון Izun (GEM 74 × 4 = 296 Hz) · carrier 296 Hz · niyet: aşırılıktan çık · katılık ve yumuşaklığı dengele' },
+    { ad:'10. SABIR — סבלנות Savlanut · GEM 568 · DÜRTÜYE DUR',
+      carrier:568, beat:8,  renk:'#6ab04c',
+      aciklama:'Alpha 8 Hz — סבלנות Savlanut (GEM 568 × 1) · carrier 568 Hz · niyet: dürtüye hemen cevap verme · acele kararı ertele · sabır' },
+    { ad:'11. İNANÇ — אמונה Emuna · GEM 102 · 408 Hz',
+      carrier:408, beat:8,  renk:'#81ecec',
+      aciklama:'Alpha 8 Hz — אמונה Emuna (GEM 102 × 4 = 408 Hz) · carrier 408 Hz · niyet: belirsizlikte yönünü koru · inanç toleransı' },
+    { ad:'12. BÜTÜNLÜK — שלום Şalom · GEM 376 · İÇ DENGE',
+      carrier:376, beat:8,  renk:'#dfe6e9',
+      aciklama:'Alpha 8 Hz — שלום Şalom (GEM 376 = עצור Atzor ile aynı) · carrier 376 Hz · niyet: iç çatışmayı dengele · DUR→ŞALOM döngüsü tamamlandı' },
+    { ad:'13. BİRLİK — אחד Echad · GEM 13 · 416 Hz [mapping 13×32]',
+      carrier:416, beat:7,  renk:'#fd79a8',
+      aciklama:'Theta 7 Hz — אחד Echad (GEM 13 · sembolik mapping: 13×32=416 Hz) · niyet: ben merkezli bakıştan bağ niyetine · bütüne bak · BEN\'DEN BİZ\'E' },
+  ],
+  durtuKorunma: [
+    { ad:'1. DUR — עצור Atzor · GEM 376 · DÜRTÜ-EYLEM MESAFESİ',
+      carrier:376, beat:10, renk:'#b2bec3',
+      aciklama:'Alpha 10 Hz — עצור Atzor (GEM 376 × 1) · carrier 376 Hz · niyet: dürtü ile eylem arasına mesafe koy · otomatik tepkiyi durdur' },
+    { ad:'2. GERÇEK — אמת Emet · GEM 441 · KENDİNİ KANDIRMAYI FAR KET',
+      carrier:441, beat:10, renk:'#dfe6e9',
+      aciklama:'Alpha 10 Hz — אמת Emet (GEM 441 × 1) · carrier 441 Hz · niyet: kendini kandırmayı fark et · savunmacı zihni gör' },
+    { ad:'3. SEÇİM — בחירה Bchira · GEM 225 · 450 Hz · BİLİNÇLİ SEÇİM',
+      carrier:450, beat:10, renk:'#a29bfe',
+      aciklama:'Alpha 10 Hz — בחירה Bchira (GEM 225 × 2 = 450 Hz) · carrier 450 Hz · niyet: bilinçli seçim · dürtüden değil iradeden seç' },
+    { ad:'4. İRADE — רצון Ratzon · GEM 346 · İSTEĞİ YÖNLENDİR',
+      carrier:346, beat:12, renk:'#fdcb6e',
+      aciklama:'Alpha 12 Hz — רצון Ratzon (GEM 346 × 1) · carrier 346 Hz · niyet: isteği yönlendir · dürtüyü değer uyumlu eyleme çevir' },
+    { ad:'5. GÜÇ — כח Koach · GEM 28 · 448 Hz · İÇSEL GÜÇ',
+      carrier:448, beat:12, renk:'#e17055',
+      aciklama:'Alpha 12 Hz — כח Koach (GEM 28 × 16 = 448 Hz) · carrier 448 Hz · niyet: içsel güç · direnç kapasitesi · iradenin kası' },
+    { ad:'6. SINIR — גבול Gvul · GEM 41 · 328 Hz · NET SINIR',
+      carrier:328, beat:12, renk:'#e74c3c',
+      aciklama:'Alpha 12 Hz — גבול Gvul (GEM 41 × 8 = 328 Hz) · carrier 328 Hz · niyet: net sınır koy · "hayır" diyebilme kapasitesi' },
+    { ad:'7. SABIR — סבלנות Savlanut · GEM 568 · DÜRTÜNÜN GEÇMESİNİ BEKLE',
+      carrier:568, beat:8,  renk:'#6ab04c',
+      aciklama:'Alpha 8 Hz — סבלנות Savlanut (GEM 568 × 1) · carrier 568 Hz · niyet: dürtünün geçmesini bekle · 10 dakika kuralı · zaman tamponu' },
+    { ad:'8. ÖZGÜRLÜK — חרות Herut · GEM 614 · BAĞIN KÖLESİ OLMAMA',
+      carrier:614, beat:10, renk:'#00cec9',
+      aciklama:'Alpha 10 Hz — חרות Herut (GEM 614 × 1) · carrier 614 Hz · niyet: bağın kölesi olmama · özgür irade · seçim özgürlüğü niyeti' },
+    { ad:'9. HAYAT — חיים Hayim · GEM 68 · 544 Hz · YAŞAMI SEÇ',
+      carrier:544, beat:10, renk:'#55efc4',
+      aciklama:'Alpha 10 Hz — חיים Hayim (GEM 68 × 8 = 544 Hz) · carrier 544 Hz · niyet: yaşamı seç · dürtüyü değil hayatı tercih et' },
+    { ad:'10. BİRLİK — אחד Echad · GEM 13 · 416 Hz [mapping 13×32] · BAĞA YÖNEL',
+      carrier:416, beat:7,  renk:'#fd79a8',
+      aciklama:'Theta 7 Hz — אחד Echad (GEM 13 · sembolik mapping: 13×32=416 Hz) · carrier 416 Hz · niyet: ben\'den bağa yönel · bağlantı dürtüden güçlüdür' },
+  ]
+};
+
+// Load metni → kategori → beat otomatik seçimi
+const LOAD_KATEGORI_KURALI = [
+  { anahtar:['ruh','arın','tefekkür','sezgi','saf','temiz','nur','ilahi','yaradan','kabala','sefirot','adonai','shaddai','keter','tiferet','chesed'],
+    kategori:'tefekkür', loadIdx:3 },
+  { anahtar:['sevgi','aşk','bağ','aile','dost','çocuk','anne','baba','torun','nesil','şefkat','merhamet','vefa','sadakat'],
+    kategori:'sevgi_bağ', loadIdx:0 },
+  { anahtar:['dua','şükür','koruma','kalkan','nimet','mağfiret','af','rahmet','bereket yüklen'],
+    kategori:'meditasyon', loadIdx:2 },
+  { anahtar:['şifa','iyileş','sağlık','güzel','güçlü','beden','hücre','bağışık','organ','kalp','dna','ten','yüz'],
+    kategori:'şifa', loadIdx:1 },
+  { anahtar:['cesaret','güç','karar','lider','zafer','başar','aktif','net','hızlı','kararlı'],
+    kategori:'aktif_odak', loadIdx:5 },
+  { anahtar:['disiplin','düzen','soruml','emek','çalış','üret','kazan','servet','zengin','otel','fabrika','uçak','gemi'],
+    kategori:'üretim', loadIdx:4 },
+  { anahtar:['huzur','sakin','dinl','rahatla','uyku','sükunet','barış'],
+    kategori:'derin_gevşeme', loadIdx:7 },
+  { anahtar:['gamma','40 hz'],
+    kategori:'gamma_ilahi', loadIdx:6 },
+];
+
+function loadKategoriSec(metin) {
+  const mt = metin.toLowerCase();
+  for (const kural of LOAD_KATEGORI_KURALI) {
+    if (kural.anahtar.some(k => mt.includes(k))) {
+      return kural.loadIdx;
+    }
+  }
+  return 0; // varsayılan: sevgi/bağ
+}
+
+// Tam otomatik döngü — blokaj → load → rezonans → izokonik → kutsal → gezegen
+const KATEGORI_SIRALAMA = [
+  // 1. BLOKAJ — önce temizle
+  { tip:'blokaj', idx:0, sure:120, aciklama:'⚡ Delta 2 Hz — blokaj temizleme (396 Hz)' },
+  { tip:'blokaj', idx:1, sure:180, aciklama:'⚡ Theta 5 Hz — değişim ve silme (417 Hz)' },
+  { tip:'blokaj', idx:2, sure:180, aciklama:'⚡ Schumann 7.83 Hz — DNA onarımı (528 Hz)' },
+  // 2. REZONANS — derin temizlik
+  { tip:'rezonans', idx:0, sure:120, aciklama:'🔮 111 Hz Malta — şifa · güvenlik hissi' },
+  { tip:'rezonans', idx:1, sure:120, aciklama:'🔮 174 Hz — ağrı giderme · stres azaltma' },
+  { tip:'rezonans', idx:2, sure:120, aciklama:'🔮 285 Hz — doku onarımı · enerji alanı' },
+  // 3. KUTSAL GEOMETRİ — uyum
+  { tip:'kutsal',   idx:0, sure:90,  aciklama:'✨ φ 1.618 Hz — altın oran · doğanın ritmi' },
+  { tip:'kutsal',   idx:1, sure:90,  aciklama:'✨ π 3.14 Hz — daire rezonansı · sonsuzluk' },
+  { tip:'kutsal',   idx:2, sure:120, aciklama:'✨ Fibonacci 8 Hz — büyüme · spiral enerji' },
+  { tip:'kutsal',   idx:3, sure:120, aciklama:'✨ Fibonacci 13 Hz — zihin genişlemesi' },
+  // 4. LOAD — yükle
+  { tip:'load', idx:3, sure:180, aciklama:'✦ Theta 5 Hz — ruh · tefekkür · ilahi (528 Hz)' },
+  { tip:'load', idx:2, sure:180, aciklama:'✦ Schumann 7.83 Hz — şükür · dua (432 Hz)' },
+  { tip:'load', idx:0, sure:240, aciklama:'✦ Alpha 9 Hz — sevgi · aile · bağ (639 Hz)' },
+  { tip:'load', idx:1, sure:180, aciklama:'✦ Alpha 10 Hz — şifa · sağlık · güzellik (639 Hz)' },
+  { tip:'load', idx:4, sure:120, aciklama:'✦ SMR 12 Hz — üretim · emek (741 Hz)' },
+  { tip:'load', idx:5, sure:120, aciklama:'✦ Beta 18 Hz — cesaret · güç (741 Hz)' },
+  // 5. İZOKONİK — beyin senkronizasyonu
+  { tip:'izokonik', idx:0, sure:120, aciklama:'⚡ İzokonik 4 Hz — derin theta · rüya bilinci' },
+  { tip:'izokonik', idx:1, sure:120, aciklama:'⚡ İzokonik 8 Hz — yaratıcılık · hafıza' },
+  { tip:'izokonik', idx:2, sure:120, aciklama:'⚡ İzokonik 10 Hz — odak · öğrenme' },
+  { tip:'izokonik', idx:3, sure:90,  aciklama:'⚡ İzokonik 14 Hz — uyanık sakinlik' },
+  // 6. REZONANS — sezgi
+  { tip:'rezonans', idx:3, sure:120, aciklama:'🔮 852 Hz — sezgi · içsel görüş · uyanış' },
+  // 7. GEZEGEN — kozmik bağlantı
+  { tip:'gezegen', idx:2, sure:120, aciklama:'🌍 Dünya 194 Hz — denge · huzur · kök' },
+  { tip:'gezegen', idx:4, sure:120, aciklama:'♀ Venüs 221 Hz — sevgi · güzellik · uyum' },
+  { tip:'gezegen', idx:3, sure:120, aciklama:'♃ Jüpiter 183 Hz — büyüme · bereket · bolluk' },
+  { tip:'gezegen', idx:1, sure:90,  aciklama:'🌙 Ay 210 Hz — sezgi · duygusal denge' },
+  { tip:'gezegen', idx:0, sure:90,  aciklama:'☀ Güneş 126 Hz — canlılık · güç · yaşam' },
+  // 8. GAMMA + NUR — kapanış
+  { tip:'load',     idx:6, sure:90,  aciklama:'✦ Gamma 40 Hz — Yaradan bağlantısı (963 Hz)' },
+  // 9. GEMATRİA ZENGİNLİK — bereket yükle
+  { tip:'gematria', idx:0, sure:120, aciklama:'💰 570 Hz Osher — İbranice Zenginlik rezonansı' },
+  { tip:'gematria', idx:1, sure:120, aciklama:'💰 450 Hz Shefa — Bolluk akışı · sonsuz bereket' },
+  { tip:'gematria', idx:2, sure:120, aciklama:'💰 227 Hz Beracha — İlahi bereket · lütuf yağmuru' },
+  { tip:'gematria', idx:3, sure:90,  aciklama:'💰 496 Hz Malkhut — Dünyevi nimet · maddi bolluk' },
+  { tip:'gematria', idx:4, sure:90,  aciklama:'💰 148 Hz Netzach — Zafer · servet · arzu' },
+  // 10. ZEKA · ÖNGÖRÜ · İŞ BİTİRİCİ — Gematria
+  { tip:'zeka', idx:0, sure:120, aciklama:'🧠 474 Hz Da\'at — fırsatı görme · içsel biliş' },
+  { tip:'zeka', idx:1, sure:180, aciklama:'🧠 730 Hz Chokhmah — bilgelik · öngörü · sezgi' },
+  { tip:'zeka', idx:2, sure:180, aciklama:'🧠 670 Hz Binah — strateji · derin analiz' },
+  { tip:'zeka', idx:3, sure:120, aciklama:'🧠 630 Hz Zerizut — çeviklik · hızlı karar · fırsat' },
+  { tip:'zeka', idx:4, sure:120, aciklama:'🧠 350 Hz Sekhel — zeka · akıl · strateji' },
+  { tip:'zeka', idx:5, sure:120, aciklama:'🧠 138 Hz Hatzlacha — başarı · iş bitirme' },
+  { tip:'zeka', idx:6, sure:120, aciklama:'🧠 230 Hz Esek — iş · ticaret · bitirmek' },
+  { tip:'zeka', idx:7, sure:90,  aciklama:'🧠 770 Hz Mazal — şans · doğru an · fırsat' },
+  { tip:'zeka', idx:8, sure:60,  aciklama:'🧠 620 Hz Keter — üst zeka · saf bilinç · Gamma' },
+  // 11. ŞANS · ÇEVRE · BAĞLANTI — Gematria
+  { tip:'sans', idx:0,  sure:120, aciklama:'🍀 790 Hz Sviva — şanslı çevre · ortam yükleniyor' },
+  { tip:'sans', idx:1,  sure:120, aciklama:'🍀 600 Hz Kesher — şanslı bağlantılar · ağ yükleniyor' },
+  { tip:'sans', idx:2,  sure:120, aciklama:'🍀 291 Hz Eretz — şanslı ülke · toprak yükleniyor' },
+  { tip:'sans', idx:3,  sure:120, aciklama:'🍀 280 Hz Ir — şanslı şehir · kent yükleniyor' },
+  { tip:'sans', idx:4,  sure:120, aciklama:'🍀 512 Hz Hizdamnut — fırsat · olanak yükleniyor' },
+  { tip:'sans', idx:5,  sure:120, aciklama:'🍀 433 Hz Mishpacha — şanslı aile yükleniyor' },
+  { tip:'sans', idx:6,  sure:120, aciklama:'🍀 260 Hz Chaverim — şanslı dostlar yükleniyor' },
+  { tip:'sans', idx:7,  sure:120, aciklama:'🍀 358 Hz Krovim — şanslı akrabalar yükleniyor' },
+  { tip:'sans', idx:8,  sure:120, aciklama:'🍀 409 Hz Avot — şanslı atalar yükleniyor' },
+  { tip:'sans', idx:9,  sure:120, aciklama:'🍀 940 Hz Yeladim — şanslı çocuklar yükleniyor' },
+  { tip:'sans', idx:10, sure:60,  aciklama:'🍀 507 Hz Osher — şanslı · mutlu hal yükleniyor' },
+  // 12. ŞANLI RUH · BEDEN · NEŞE · HAZ — Gematria
+  { tip:'nesehaz', idx:0,  sure:120, aciklama:'✨ 430 Hz Nefesh — şanslı ruh · can · yaşam gücü' },
+  { tip:'nesehaz', idx:1,  sure:120, aciklama:'✨ 890 Hz Guf — şanslı beden yükleniyor' },
+  { tip:'nesehaz', idx:2,  sure:120, aciklama:'✨ 204 Hz Guf Chazak — çok güçlü beden' },
+  { tip:'nesehaz', idx:3,  sure:120, aciklama:'✨ 239 Hz Goral — şanslı kader yükleniyor' },
+  { tip:'nesehaz', idx:4,  sure:120, aciklama:'✨ 329 Hz Machzor — şanslı yaşam döngüsü' },
+  { tip:'nesehaz', idx:5,  sure:120, aciklama:'✨ 619 Hz Briut — sağlıklı beden yükleniyor' },
+  { tip:'nesehaz', idx:6,  sure:120, aciklama:'✨ 405 Hz Teshuka — çok güçlü arzu · tutku' },
+  { tip:'nesehaz', idx:7,  sure:120, aciklama:'✨ 353 Hz Simcha — çok güçlü neşe · sevinç' },
+  { tip:'nesehaz', idx:8,  sure:120, aciklama:'✨ 369 Hz Oneg — çok güçlü haz · zevk' },
+  { tip:'nesehaz', idx:9,  sure:120, aciklama:'✨ 292 Hz Refua — güçlü ruh sağlığı' },
+  { tip:'nesehaz', idx:10, sure:120, aciklama:'✨ 680 Hz Chaim — şanslı yaşam · canlılık' },
+  { tip:'nesehaz', idx:11, sure:120, aciklama:'✨ 523 Hz Alizut — neşeli ortam · şenlik' },
+  { tip:'nesehaz', idx:12, sure:120, aciklama:'✨ 388 Hz Salkhan — neşeli dostlar · aile · komşular' },
+  // 13. ORGAN REZONANS — vücut şifası
+  { tip:'organ', idx:0, sure:90,  aciklama:'🫀 696 Hz — Kalp rezonansı · kardiyak şifa' },
+  { tip:'organ', idx:1, sure:90,  aciklama:'🫁 660 Hz — Akciğer rezonansı · nefes şifası' },
+  { tip:'organ', idx:2, sure:90,  aciklama:'🫀 317 Hz — Karaciğer rezonansı · detoks' },
+  { tip:'organ', idx:3, sure:90,  aciklama:'🫘 281 Hz — Böbrek rezonansı · filtre şifası' },
+  { tip:'organ', idx:6, sure:90,  aciklama:'🌿 285 Hz — Lenf sistemi · bağışıklık' },
+  { tip:'organ', idx:9, sure:90,  aciklama:'🧬 528 Hz — Bağışıklık aktivasyonu · DNA onarımı' },
+  // 14. ÇAKRA — enerji merkezleri
+  { tip:'cakra', idx:0, sure:60,  aciklama:'🔴 194 Hz — Kök çakra · güvenlik · beden' },
+  { tip:'cakra', idx:1, sure:60,  aciklama:'🟠 210 Hz — Sakral çakra · duygu · yaratım' },
+  { tip:'cakra', idx:2, sure:60,  aciklama:'🟡 126 Hz — Solar pleksus · güç · sindirim' },
+  { tip:'cakra', idx:3, sure:60,  aciklama:'💚 136 Hz — Kalp çakrası · sevgi · bağışıklık' },
+  { tip:'cakra', idx:4, sure:60,  aciklama:'🔵 141 Hz — Boğaz çakrası · ifade · hakikat' },
+  { tip:'cakra', idx:5, sure:60,  aciklama:'🟣 221 Hz — Üçüncü göz · sezgi · görüş' },
+  { tip:'cakra', idx:6, sure:60,  aciklama:'💜 172 Hz — Taç çakrası · bilinç · ilahi bağ' },
+  // 15. RİFE — temizleme
+  { tip:'rife',  idx:0, sure:90,  aciklama:'⚡ 787 Hz — Antiviral · virüs temizleme' },
+  { tip:'rife',  idx:1, sure:90,  aciklama:'⚡ 880 Hz — Antibakteriyel · bakteri temizleme' },
+  { tip:'rife',  idx:2, sure:90,  aciklama:'⚡ 727 Hz — Antifungal · mantar temizleme' },
+  { tip:'rife',  idx:5, sure:90,  aciklama:'⚡ 174 Hz — Ağrı giderme · anti-enflamasyon' },
+  // 16. DERİN HUZUR — kapanış
+  { tip:'load',    idx:7, sure:120, aciklama:'✦ Delta 2 Hz — derin gevşeme · huzur (396 Hz)' },
+  // 17. GENETİK · NF1 · NF2 — DNA onarımı
+  { tip:'genetik', idx:0, sure:120, aciklama:'🧬 528 Hz — NF1 DNA onarımı · tümör baskılama' },
+  { tip:'genetik', idx:1, sure:120, aciklama:'🧬 285 Hz — NF2 doku onarımı · merlin protein' },
+  { tip:'genetik', idx:2, sure:90,  aciklama:'🧬 396 Hz — Genetik mutasyon blokajı' },
+  { tip:'genetik', idx:3, sure:90,  aciklama:'🧬 417 Hz — Epigenetik değişim · DNA temizleme' },
+  { tip:'genetik', idx:4, sure:90,  aciklama:'🧬 174 Hz — Hücre zarı onarımı · ağrı baskılama' },
+  { tip:'genetik', idx:5, sure:60,  aciklama:'🧬 40 Hz Gamma — beyin tümörü baskılama' },
+  { tip:'genetik', idx:6, sure:90,  aciklama:'🧬 432 Hz — Biyolojik denge · homeostaz' },
+  { tip:'genetik', idx:7, sure:90,  aciklama:'🧬 639 Hz — Hücre iletişimi · DNA uyumu' },
+  { tip:'genetik', idx:8, sure:90,  aciklama:'🧬 741 Hz — Tümör baskılama · detoks' },
+  { tip:'genetik', idx:9, sure:90,  aciklama:'🧬 787 Hz — Anormal hücre büyümesi baskılama' },
+  { tip:'genetik', idx:10, sure:90, aciklama:'🧬 352 Hz — Sinir kılıfı · miyelin onarımı' },
+  { tip:'genetik', idx:11, sure:90, aciklama:'🧬 304 Hz — Kemik · periost onarımı' },
+  { tip:'genetik', idx:12, sure:90, aciklama:'🧬 528 Hz — NF enflamasyon baskılama' },
+  { tip:'genetik', idx:13, sure:90, aciklama:'🧬 285 Hz — Hücre rejenerasyonu · fibrom' },
+  { tip:'genetik', idx:14, sure:60, aciklama:'🧬 963 Hz — Epigenetik koruma · ilahi DNA' },
+  { tip:'genetik', idx:15, sure:90, aciklama:'🧬 432 Hz — Genetik nesil koruması' },
+  // 18. CESARET · KORKU YEN — tam sistem
+  { tip:'cesaret', idx:0,  sure:90,  aciklama:'⚔ 396 Hz — Kök korku çözme · güvenlik · varoluş korkusu silme' },
+  { tip:'cesaret', idx:1,  sure:90,  aciklama:'⚔ 174 Hz — Korku ağrısı baskılama · sinir sistemi sakinleştirme' },
+  { tip:'cesaret', idx:2,  sure:90,  aciklama:'⚔ 417 Hz — Travma korkusu çözme · geçmiş silme' },
+  { tip:'cesaret', idx:3,  sure:90,  aciklama:'⚔ 285 Hz — Güvensizlik çözme · ortam korkusu silme' },
+  { tip:'cesaret', idx:4,  sure:120, aciklama:'⚔ 741 Hz Gevurah — güç cesareti · net karar' },
+  { tip:'cesaret', idx:5,  sure:120, aciklama:'⚔ 528 Hz — Kahraman cesareti · DNA güç aktivasyonu' },
+  { tip:'cesaret', idx:6,  sure:90,  aciklama:'⚔ 639 Hz — Sosyal cesaret · bağ kurma gücü' },
+  { tip:'cesaret', idx:7,  sure:90,  aciklama:'⚔ 432 Hz — Sakin cesaret · huzurlu güç' },
+  { tip:'cesaret', idx:8,  sure:60,  aciklama:'⚔ 40 Hz Gamma — amigdala baskılama · cesur beyin' },
+  { tip:'cesaret', idx:9,  sure:90,  aciklama:'⚔ 10 Hz Alpha — korku döngüsü kırma' },
+  { tip:'cesaret', idx:10, sure:90,  aciklama:'⚔ 12 Hz SMR — soğukkanlı cesaret · baskı altında kontrol' },
+  { tip:'cesaret', idx:11, sure:90,  aciklama:'⚔ 18 Hz Beta — aktif cesaret · harekete geçme' },
+  { tip:'cesaret', idx:12, sure:90,  aciklama:'⚔ 216 Hz Gevurah — Kabala güç · adalet cesareti' },
+  { tip:'cesaret', idx:13, sure:90,  aciklama:'⚔ 296 Hz Netzach — zafer cesareti · yılmaz azim' },
+  { tip:'cesaret', idx:14, sure:90,  aciklama:'⚔ 480 Hz Tiferet — denge cesareti · kalp gücü' },
+  { tip:'cesaret', idx:15, sure:60,  aciklama:'⚔ ☀ 126 Hz Güneş — kahraman enerjisi' },
+  { tip:'cesaret', idx:16, sure:60,  aciklama:'⚔ ♃ 183 Hz Jüpiter — büyüme cesareti' },
+  { tip:'cesaret', idx:17, sure:60,  aciklama:'⚔ ♂ 144 Hz Mars — savaşçı ruhu · güç' },
+  { tip:'cesaret', idx:18, sure:90,  aciklama:'⚔ φ 432 Hz — altın oran cesaret rezonansı' },
+  { tip:'cesaret', idx:19, sure:60,  aciklama:'⚔ 963 Hz — İlahi cesaret · Yaradan ile güç · tam özgürlük' },
+  // 19. 6 KATMAN — EGO'DAN EYLEME — sıralı
+  { tip:'cesaret', idx:20, sure:120, aciklama:'🜂 EGO → 432 Hz · 7 Hz θ — Ben\'den Biz\'e · ego çözme' },
+  { tip:'cesaret', idx:21, sure:120, aciklama:'🛡 KORKU → 432 Hz · 8 Hz α — Sakin güç · korku yenme' },
+  { tip:'cesaret', idx:22, sure:120, aciklama:'🫂 TRAVMA → 432 Hz · 10 Hz α — Güvenli alan · sinir sıfırlama' },
+  { tip:'cesaret', idx:23, sure:120, aciklama:'⚔ CESARET → 528 Hz · 10 Hz α — Kararlı güç aktivasyonu' },
+  { tip:'cesaret', idx:24, sure:120, aciklama:'💠 ÇELİK SİNİR → 432 Hz · 12 Hz SMR — Sarsılmaz denge' },
+  { tip:'cesaret', idx:25, sure:120, aciklama:'⚡ EYLEM → 432 Hz · 14 Hz SMR — Harekete geç!' },
+  // 20. ŞANS AKIŞI PROTOKOLܑ — sıralı 7 katman
+  { tip:'sansAkisi', idx:0, sure:120, aciklama:'🤲 İHSAN → חסד GEM72 · 432 Hz · 7θ — Vermek için güç' },
+  { tip:'sansAkisi', idx:1, sure:120, aciklama:'🍀 MAZAL → מזל GEM77 · 432 Hz · 10α — Fırsatı fark et' },
+  { tip:'sansAkisi', idx:2, sure:120, aciklama:'🚪 FIRSAT → הזדמנות GEM512 · 512 Hz · 12SMR — Yakala' },
+  { tip:'sansAkisi', idx:3, sure:120, aciklama:'🏆 BAŞARI → הצלחה GEM138 · 414 Hz · 14SMR — Tamamla' },
+  { tip:'sansAkisi', idx:4, sure:120, aciklama:'🌊 BOLLUK → שפע GEM450 · 450 Hz · 8α — Akış hali' },
+  { tip:'sansAkisi', idx:5, sure:120, aciklama:'🌾 GEÇİM → פרנסה GEM395 · 395 Hz · 10α — Parnasa' },
+  { tip:'sansAkisi', idx:6, sure:120, aciklama:'🌟 BEREKET → ברכה GEM227 · 454 Hz · 8α — Kapılar açıldı' },
+  // 21. ŞİFA PROTOKOLܑ — SAKİNLİK'TEN BEREKET'E
+  { tip:'sifaProtokol', idx:0, sure:120, aciklama:'1. SAKİNLİK → שלום GEM376 · 432 Hz · 8α — Bedensel alarm yat' },
+  { tip:'sifaProtokol', idx:1, sure:120, aciklama:'2. HAYAT → חיים GEM68 · 408 Hz · 8α — Yaşamı destekle' },
+  { tip:'sifaProtokol', idx:2, sure:120, aciklama:'3. SAĞLIK → בריאות GEM619 · 619 Hz · 10α — Beden farkındalığı' },
+  { tip:'sifaProtokol', idx:3, sure:120, aciklama:'4. MAZAL → מזל GEM77 · 462 Hz · 10α — Fırsatı fark et' },
+  { tip:'sifaProtokol', idx:4, sure:120, aciklama:'5. LÜTUF → חן GEM58 · 464 Hz · 8α — Yardımı kabul et' },
+  { tip:'sifaProtokol', idx:5, sure:120, aciklama:'6. ŞİFA NİYETİ → רפואה GEM292 · 584 Hz · 7θ — İçsel iyileşme' },
+  { tip:'sifaProtokol', idx:6, sure:120, aciklama:'7. BEREKET → ברכה GEM227 · 454 Hz · 8α — İyiliği fark et' },
+  // 22. BİLGELİK ZİNCİRİ — GERÇEK'TEN BEREKET'E
+  { tip:'bilgelik', idx:0,  sure:120, aciklama:'1. GERÇEK → אמת GEM441 · 441 Hz · 10α — Kendini gör' },
+  { tip:'bilgelik', idx:1,  sure:120, aciklama:'2. YOL → דרך GEM224 · 224 Hz · 8α — Yönü bul' },
+  { tip:'bilgelik', idx:2,  sure:90,  aciklama:'3. BİLGELİK → חכמה GEM73 · 146 Hz · 7θ — Üst bakış' },
+  { tip:'bilgelik', idx:3,  sure:90,  aciklama:'4. ANLAYIŞ → בינה GEM67 · 134 Hz · 8α — Anlamlandır' },
+  { tip:'bilgelik', idx:4,  sure:120, aciklama:'5. BİLGİ → דעת GEM474 · 474 Hz · 10α — İçselleştir' },
+  { tip:'bilgelik', idx:5,  sure:90,  aciklama:'6. NİYET → כונה GEM81 · 162 Hz · 7θ — Berraklaş' },
+  { tip:'bilgelik', idx:6,  sure:120, aciklama:'7. İRADE → רצון GEM346 · 346 Hz · 12SMR — Güçlen' },
+  { tip:'bilgelik', idx:7,  sure:90,  aciklama:'8. İNANÇ → אמונה GEM102 · 204 Hz · 7θ — Devam et' },
+  { tip:'bilgelik', idx:8,  sure:120, aciklama:'9. DÜZEN → סדר GEM264 · 264 Hz · 12SMR — Sisteme bağlı kal' },
+  { tip:'bilgelik', idx:9,  sure:120, aciklama:'10. BAŞARI → הצלחה GEM138 · 276 Hz · 14SMR — Sonuç üret' },
+  { tip:'bilgelik', idx:10, sure:120, aciklama:'11. BEREKET → ברכה GEM227 · 227 Hz · 8α — Doğru kullan' },
+  // 23. DOĞRU YÖN — 13 adım karar kalkanı
+  { tip:'dogruYon', idx:0,  sure:90, aciklama:'1. DUR → עצור GEM376 · 376 Hz · 10α — Zihinsel fren' },
+  { tip:'dogruYon', idx:1,  sure:90, aciklama:'2. GERÇEK → אמת GEM441 · 441 Hz · 10α — Durumu gözlemle' },
+  { tip:'dogruYon', idx:2,  sure:90, aciklama:'3. NİYET → כוונה GEM81 · 324 Hz · 8α — Neden yapıyorum?' },
+  { tip:'dogruYon', idx:3,  sure:90, aciklama:'4. ÖLÇÜ → דין GEM64 · 256 Hz · 10α — Ölç ve sınır koy' },
+  { tip:'dogruYon', idx:4,  sure:90, aciklama:'5. BİLGELİK → חכמה GEM73 · 292 Hz · 8α — Daha geniş bak' },
+  { tip:'dogruYon', idx:5,  sure:90, aciklama:'6. ANLAYIŞ → בינה GEM67 · 268 Hz · 8α — Ayırt et' },
+  { tip:'dogruYon', idx:6,  sure:90, aciklama:'7. BİLGİ → דעת GEM474 · 474 Hz · 10α — Veriden karara' },
+  { tip:'dogruYon', idx:7,  sure:90, aciklama:'8. YOL → דרך GEM224 · 448 Hz · 10α — Yönü kontrol et' },
+  { tip:'dogruYon', idx:8,  sure:90, aciklama:'9. DENGE → איזון GEM74 · 296 Hz · 10α — Aşırılıktan çık' },
+  { tip:'dogruYon', idx:9,  sure:90, aciklama:'10. SABIR → סבלנות GEM568 · 568 Hz · 8α — Dürtüye dur' },
+  { tip:'dogruYon', idx:10, sure:90, aciklama:'11. İNANÇ → אמונה GEM102 · 408 Hz · 8α — Belirsizlikte yön' },
+  { tip:'dogruYon', idx:11, sure:90, aciklama:'12. BÜTÜNLÜK → שלום GEM376 · 376 Hz · 8α — DUR→ŞALOM' },
+  { tip:'dogruYon', idx:12, sure:90, aciklama:"13. BİRLİK → אחד GEM13 · 416 Hz [13×32] · 7θ — Ben'den Biz'e" },
+  // 24. DÜRTÜ KORUNMA — 10 adım
+  { tip:'durtuKorunma', idx:0, sure:90, aciklama:'1. DUR → עצור GEM376 · 376 Hz · 10α — Dürtü-eylem mesafesi' },
+  { tip:'durtuKorunma', idx:1, sure:90, aciklama:'2. GERÇEK → אמת GEM441 · 441 Hz · 10α — Kendini kandırmayı fark et' },
+  { tip:'durtuKorunma', idx:2, sure:90, aciklama:'3. SEÇİM → בחירה GEM225 · 450 Hz · 10α — Bilinçli seç' },
+  { tip:'durtuKorunma', idx:3, sure:90, aciklama:'4. İRADE → רצון GEM346 · 346 Hz · 12α — İsteği yönlendir' },
+  { tip:'durtuKorunma', idx:4, sure:90, aciklama:'5. GÜÇ → כח GEM28 · 448 Hz · 12α — İçsel güç' },
+  { tip:'durtuKorunma', idx:5, sure:90, aciklama:'6. SINIR → גבול GEM41 · 328 Hz · 12α — Net sınır' },
+  { tip:'durtuKorunma', idx:6, sure:90, aciklama:'7. SABIR → סבלנות GEM568 · 568 Hz · 8α — Dürtünün geçmesini bekle' },
+  { tip:'durtuKorunma', idx:7, sure:90, aciklama:'8. ÖZGÜRLÜK → חרות GEM614 · 614 Hz · 10α — Bağın kölesi olmama' },
+  { tip:'durtuKorunma', idx:8, sure:90, aciklama:'9. HAYAT → חיים GEM68 · 544 Hz · 10α — Yaşamı seç' },
+  { tip:'durtuKorunma', idx:9, sure:90, aciklama:"10. BİRLİK → אחד GEM13 · 416 Hz [13×32] · 7θ — Ben'den bağa yönel" },
+  // 25. GEMATRİA — eksik 1 frekans (idx:5 kesef 160 Hz)
+  { tip:'gematria',     idx:5, sure:90,  aciklama:'💰 160 Hz — כסף Kesef GEM 160 · para · gümüş rezonansı' },
+  // 26. ORGAN — eksik 4 frekans
+  { tip:'organ', idx:4, sure:90,  aciklama:'🫀 220 Hz — Mide rezonansı · sindirim · mide şifası' },
+  { tip:'organ', idx:5, sure:90,  aciklama:'🦴 304 Hz — Kemik rezonansı · iskelet · güçlendirme' },
+  { tip:'organ', idx:7, sure:60,  aciklama:'🧠 40 Hz Gamma — Beyin aktivasyonu · nörodejenerasyon önleme' },
+  { tip:'organ', idx:8, sure:90,  aciklama:'💪 120 Hz — Kas rezonansı · iyileşme · güçlendirme' },
+  // 27. RİFE — eksik 3 frekans
+  { tip:'rife',  idx:3, sure:90,  aciklama:'⚡ 20 Hz — Bağ dokusu onarımı · kıkırdak · tendon' },
+  { tip:'rife',  idx:4, sure:90,  aciklama:'⚡ 660 Hz — Rife bağışıklık aktivasyonu · savunma güçlendirme' },
+  { tip:'rife',  idx:6, sure:90,  aciklama:'⚡ 432 Hz — Genel biyolojik denge · homeostaz' },
+  // 28. TİNNİTUS — ⚠ alçak ses · uzman önerisi ile
+  { tip:'tinnitus', idx:0, sure:120, aciklama:'🔕 396 Hz · Delta 4 Hz — Tinnitus · sinir sistemi sakinleştirme (çok alçak ses)' },
+  { tip:'tinnitus', idx:1, sure:120, aciklama:'🔕 432 Hz · Schumann 7.83 Hz — Tinnitus · sinir dengesi (çok alçak ses)' },
+  { tip:'tinnitus', idx:2, sure:120, aciklama:'🔕 639 Hz · Alpha 10 Hz — Tinnitus · stres kaynaklı çınlama (çok alçak ses)' },
+  { tip:'tinnitus', idx:3, sure:90,  aciklama:'🔕 400 Hz · Gamma 40 Hz — Tinnitus algı azaltma (çok alçak ses)' },
+];
+
+let audioCtx = null;
+let binauralAktif = false;
+let solOsc = null, sagOsc = null;
+let solGain = null, sagGain = null;
+let mevcutFrekans = null;
+let binauralInterval = null;
+let akilliFazIdx = 0;
+let binauralMod = 'blokaj';
+
+// Akıllı döngü zamanlayıcı
+let akilliFazTimer = null;
+let akilliFazKalan = 0;
+let akilliFazSayacInterval = null;
+
+function audioBaslat() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function binauralCal(frekansObj) {
+  audioBaslat();
+  if (solOsc) { try { solOsc.stop(); } catch(e){} }
+  if (sagOsc) { try { sagOsc.stop(); } catch(e){} }
+
+  const carrier = frekansObj.carrier;
+  const beat    = frekansObj.beat;
+
+  const solMerger = audioCtx.createChannelMerger(2);
+  solOsc  = audioCtx.createOscillator();
+  solGain = audioCtx.createGain();
+  solOsc.frequency.value = carrier;
+  solOsc.type = 'sine';
+  const gainDeger = frekansObj.gain || 0.18;
+  solGain.gain.value = gainDeger;
+  solOsc.connect(solGain);
+  solGain.connect(solMerger, 0, 0);
+
+  sagOsc  = audioCtx.createOscillator();
+  sagGain = audioCtx.createGain();
+  sagOsc.frequency.value = carrier + beat;
+  sagOsc.type = 'sine';
+  sagGain.gain.value = gainDeger;
+  sagOsc.connect(sagGain);
+  sagGain.connect(solMerger, 0, 1);
+
+  solMerger.connect(audioCtx.destination);
+  solOsc.start();
+  sagOsc.start();
+
+  mevcutFrekans = frekansObj;
+  binauralUIGuncelle(frekansObj);
+}
+
+function binauralDurdur() {
+  if (solOsc) { try { solOsc.stop(); } catch(e){} solOsc = null; }
+  if (sagOsc) { try { sagOsc.stop(); } catch(e){} sagOsc = null; }
+  if (akilliFazTimer) { clearTimeout(akilliFazTimer); akilliFazTimer = null; }
+  if (akilliFazSayacInterval) { clearInterval(akilliFazSayacInterval); akilliFazSayacInterval = null; }
+  binauralAktif = false;
+  mevcutFrekans = null;
+  binauralUIGuncelle(null);
+}
+
+// Akıllı döngü — her faz kendi süresiyle çalar
+function akilliFazBaslat() {
+  if (!binauralAktif) return;
+
+  const faz  = KATEGORI_SIRALAMA[akilliFazIdx % KATEGORI_SIRALAMA.length];
+  const frek = FREKANSLAR[faz.tip][faz.idx];
+  binauralCal(frek);
+
+  // Kalan süre sayacı
+  akilliFazKalan = faz.sure;
+  if (akilliFazSayacInterval) clearInterval(akilliFazSayacInterval);
+  akilliFazSayacInterval = setInterval(() => {
+    akilliFazKalan--;
+    const el = document.getElementById('binaural-kalan');
+    if (el) {
+      const dk  = Math.floor(akilliFazKalan / 60);
+      const sn  = akilliFazKalan % 60;
+      el.textContent = `${dk}:${String(sn).padStart(2,'0')} kaldı`;
+    }
+    if (akilliFazKalan <= 0) {
+      clearInterval(akilliFazSayacInterval);
+    }
+  }, 1000);
+
+  // Kategori açıklamasını güncelle
+  const katEl = document.getElementById('binaural-kategori');
+  if (katEl) katEl.textContent = faz.aciklama;
+
+  // Sonraki faz
+  akilliFazIdx++;
+  akilliFazTimer = setTimeout(akilliFazBaslat, faz.sure * 1000);
+}
+
+function binauralDonguBaslat() {
+  audioBaslat();
+  binauralAktif = true;
+  akilliFazIdx  = 0;
+  akilliFazBaslat();
+}
+
+function binauralToggle() {
+  if (binauralAktif) {
+    binauralDurdur();
+  } else {
+    binauralDonguBaslat();
+  }
+}
+
+function binauralManuelSec(tip, idx) {
+  if (akilliFazTimer) { clearTimeout(akilliFazTimer); akilliFazTimer = null; }
+  if (akilliFazSayacInterval) { clearInterval(akilliFazSayacInterval); akilliFazSayacInterval = null; }
+  binauralAktif = true;
+  binauralCal(FREKANSLAR[tip][idx]);
+  const katEl = document.getElementById('binaural-kategori');
+  if (katEl) katEl.textContent = FREKANSLAR[tip][idx].aciklama;
+}
+
+function binauralUIGuncelle(frekObj) {
+  const bar   = document.getElementById('binaural-bar');
+  const ad    = document.getElementById('binaural-ad');
+  const acikl = document.getElementById('binaural-aciklama');
+  const btn   = document.getElementById('binaural-btn');
+  const dalga = document.getElementById('binaural-dalga');
+  const sol   = document.getElementById('binaural-sol');
+  const sag   = document.getElementById('binaural-sag');
+  const beat  = document.getElementById('binaural-beat');
+
+  if (frekObj) {
+    if (bar)   { bar.style.borderColor=frekObj.renk+'55'; bar.style.background=frekObj.renk+'0d'; }
+    if (ad)    { ad.textContent=frekObj.ad; ad.style.color=frekObj.renk; }
+    if (acikl) acikl.textContent = frekObj.aciklama;
+    if (sol)   sol.textContent   = frekObj.carrier + ' Hz';
+    if (sag)   sag.textContent   = (frekObj.carrier + frekObj.beat) + ' Hz';
+    if (beat)  beat.textContent  = frekObj.beat + ' Hz beat';
+    if (dalga) { dalga.style.animation='scan 1s ease-in-out infinite'; dalga.style.color=frekObj.renk; }
+    if (btn)   { btn.textContent='⏹ Durdur'; btn.style.borderColor=frekObj.renk; btn.style.color=frekObj.renk; }
+  } else {
+    if (bar)   { bar.style.borderColor='rgba(139,131,232,.25)'; bar.style.background='rgba(139,131,232,.06)'; }
+    if (ad)    { ad.textContent='Binaural Beat — akıllı frekans motoru'; ad.style.color='var(--purple)'; }
+    if (acikl) acikl.textContent='▶ Başlat → 7 frekans · akıllı döngü · Kulaklık ile dinle';
+    if (sol)   sol.textContent='— Hz';
+    if (sag)   sag.textContent='— Hz';
+    if (beat)  beat.textContent='— Hz';
+    if (dalga) { dalga.style.animation='none'; }
+    if (btn)   { btn.textContent='▶ Başlat'; btn.style.borderColor='rgba(139,131,232,.4)'; btn.style.color='var(--purple)'; }
+    const katEl = document.getElementById('binaural-kategori');
+    if (katEl) katEl.textContent = '';
+    const kalEl = document.getElementById('binaural-kalan');
+    if (kalEl) kalEl.textContent = '';
+  }
+}
 
 // ── MOTOR VERİLERİ ────────────────────────────────────────
 const KISILER = [
